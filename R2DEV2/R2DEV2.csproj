@@ -189,26 +189,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707071353313_InitialCreate.cs" />
-    <Compile Include="Migrations\201707071353313_InitialCreate.Designer.cs">
-      <DependentUpon>201707071353313_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707071354367_init.cs" />
-    <Compile Include="Migrations\201707071354367_init.Designer.cs">
-      <DependentUpon>201707071354367_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707100746015_1.cs" />
-    <Compile Include="Migrations\201707100746015_1.Designer.cs">
-      <DependentUpon>201707100746015_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707100855358_2.cs" />
-    <Compile Include="Migrations\201707100855358_2.Designer.cs">
-      <DependentUpon>201707100855358_2.cs</DependentUpon>
+    <Compile Include="Migrations\201707100921509_init.cs" />
+    <Compile Include="Migrations\201707100921509_init.Designer.cs">
+      <DependentUpon>201707100921509_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -275,6 +264,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\CourseClasses\Create.cshtml" />
+    <Content Include="Views\CourseClasses\Delete.cshtml" />
+    <Content Include="Views\CourseClasses\Details.cshtml" />
+    <Content Include="Views\CourseClasses\Edit.cshtml" />
+    <Content Include="Views\CourseClasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,17 +289,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707071353313_InitialCreate.resx">
-      <DependentUpon>201707071353313_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707071354367_init.resx">
-      <DependentUpon>201707071354367_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707100746015_1.resx">
-      <DependentUpon>201707100746015_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707100855358_2.resx">
-      <DependentUpon>201707100855358_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707100921509_init.resx">
+      <DependentUpon>201707100921509_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

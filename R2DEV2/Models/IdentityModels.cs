@@ -37,5 +37,7 @@ namespace R2DEV2.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<R2DEV2.Models.CourseClass> CourseClasses { get; set; }
     }
 }
