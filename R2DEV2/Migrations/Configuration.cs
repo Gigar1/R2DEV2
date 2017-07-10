@@ -7,7 +7,7 @@ namespace R2DEV2.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    //blub
     internal sealed class Configuration : DbMigrationsConfiguration<R2DEV2.Models.ApplicationDbContext>
     {
         public Configuration()
