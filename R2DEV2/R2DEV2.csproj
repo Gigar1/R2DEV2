@@ -208,6 +208,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bilder\lexicon.png" />
+    <Content Include="Bilder\logo-lexicon.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -269,6 +271,7 @@
     <Content Include="Views\CourseClasses\Details.cshtml" />
     <Content Include="Views\CourseClasses\Edit.cshtml" />
     <Content Include="Views\CourseClasses\Index.cshtml" />
+    <Content Include="Views\Home\CreateTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
