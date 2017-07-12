@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - R2DEV2</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 
 <body>
@@ -14,6 +13,7 @@
         #adminPanel {
             background-color: #e7e7e7;
             margin-top: -5px;
+            min-height: 43px;
         }
 
         .navbar-brand {
@@ -22,18 +22,30 @@
             font-weight: bolder;
             font-size: 28px;
         }
+
+        ul{
+            margin-top: 2px;
+        }
     </style>
 
     <div class="navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 @Html.ActionLink("LEXICON", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @Html.Partial("_LoginPartial")
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
     </div>
 
     <div id="adminPanel" class="container-fluid">
+        <!--LÄGG TILL KONTROLL FÖR LÄRARE-->
         <div class="container">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
@@ -44,9 +56,19 @@
                         Skapa <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#dropdown1" data-toggle="tab">Lärare</a></li>
-                        <li><a href="#dropdown2" data-toggle="tab">Elev</a></li>
-                        <li><a href="#dropdown3" data-toggle="tab">Kurs</a></li>
+                        <li><a href="#skapa1" data-toggle="tab">Lärare</a></li>
+                        <li><a href="#skapa2" data-toggle="tab">Elev</a></li>
+                        <li><a href="#skapa3" data-toggle="tab">Kurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Redigera <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#redigera1" data-toggle="tab">Lärare</a></li>
+                        <li><a href="#redigera2" data-toggle="tab">Elev</a></li>
+                        <li><a href="#redigera3" data-toggle="tab">Kurs</a></li>
                     </ul>
                 </li>
             </ul>
@@ -64,17 +86,34 @@
                 @RenderPage("~/Views/Home/About.cshtml")
             </div>
         </div>
-        <div class="tab-pane fade" id="dropdown1"> <!--Lärare-->
+
+        <div class="tab-pane fade" id="skapa1"> <!--Lärare-->
             <div class="container body-content">
                 @RenderPage("~/Views/Account/Register.cshtml")
             </div>
         </div>
-        <div class="tab-pane fade" id="dropdown2"> <!--Elev-->
+        <div class="tab-pane fade" id="skapa2"> <!--Elev-->
             <div class="container body-content">
                 @RenderPage("~/Views/Home/Contact.cshtml")
             </div>
         </div>
-        <div class="tab-pane fade" id="dropdown3"> <!--Kurs-->
+        <div class="tab-pane fade" id="skapa3"> <!--Kurs-->
+            <div class="container body-content">
+                @RenderPage("~/Views/Home/About.cshtml")
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="redigera1"> <!--Lärare-->
+            <div class="container body-content">
+                @RenderPage("~/Views/Account/Register.cshtml")
+            </div>
+        </div>
+        <div class="tab-pane fade" id="redigera2"> <!--Elev-->
+            <div class="container body-content">
+                @RenderPage("~/Views/Home/Contact.cshtml")
+            </div>
+        </div>
+        <div class="tab-pane fade" id="redigera3"> <!--Kurs-->
             <div class="container body-content">
                 @RenderPage("~/Views/Home/About.cshtml")
             </div>
