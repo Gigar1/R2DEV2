@@ -46,7 +46,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
+        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
+        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {

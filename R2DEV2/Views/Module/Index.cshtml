@@ -4,36 +4,69 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        @foreach (var item in Model)
+        {
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#ITEMnamn">@Html.DisplayFor(modelItem => item.ModuleName)</a>
+                </h4>
+            </div>
+            <div id="ITEMnamn" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    @Html.DisplayFor(modelItem => item.ModuleDescription)
+                    <br />
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </div>
+            </div>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ModuleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModuleDescription)
-        </th>
-        <th></th>
-    </tr>
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#SkapaModul">Skapa Ny Modul</a>
+            </h4>
+        </div>
+        <div id="SkapaModul" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuleDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+@*<h2>Index</h2>
 
-</table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleDescription)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>*@
