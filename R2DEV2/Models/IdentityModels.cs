@@ -29,7 +29,7 @@ namespace R2DEV2.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<CourseClass> Courses { get; set; }
+        //public DbSet<CourseClass> CourseClasses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

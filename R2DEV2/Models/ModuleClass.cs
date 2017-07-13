@@ -14,6 +14,6 @@ namespace R2DEV2.Models
         public string ModuleDescription { get; set; }
 
         public virtual ICollection<ApplicationUser> Activities { get; set; }
-        public virtual ICollection<ApplicationUser> Courses { get; set; }
+        //public virtual ICollection<ApplicationUser> Courses { get; set; }
     }
 }
