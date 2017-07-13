@@ -1,13 +1,12 @@
 ﻿@model R2DEV2.Models.CourseClass
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaljer";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>CourseClass</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,14 +31,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseDescription)
         </dd>
 
     </dl>
