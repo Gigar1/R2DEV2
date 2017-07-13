@@ -15,6 +15,7 @@ namespace R2DEV2.Models
         public string LastName { get; set; }
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
+        public ICollection<CourseClass> AttendedClasses { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -28,6 +29,8 @@ namespace R2DEV2.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<CourseClass> Courses { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
