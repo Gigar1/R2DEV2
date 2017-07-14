@@ -15,5 +15,7 @@ namespace R2DEV2.Models
         public DateTime StartTime { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime EndTime { get { return StartTime + Duration; } }
+
+        public CourseClass CourseClass { get; set; }
     }
 }
