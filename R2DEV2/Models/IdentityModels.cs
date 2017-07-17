@@ -46,5 +46,9 @@ namespace R2DEV2.Models
         public System.Data.Entity.DbSet<R2DEV2.Models.Module> Modules { get; set; }
 
         public System.Data.Entity.DbSet<R2DEV2.Models.Activity> Activities { get; set; }
+
+        public System.Data.Entity.DbSet<R2DEV2.Models.Teacher> Teachers { get; set; }
+
+        public System.Data.Entity.DbSet<R2DEV2.Models.Student> Students { get; set; }
     }
 }

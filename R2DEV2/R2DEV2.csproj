@@ -194,16 +194,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707171136547_init.cs" />
-    <Compile Include="Migrations\201707171136547_init.Designer.cs">
-      <DependentUpon>201707171136547_init.cs</DependentUpon>
+    <Compile Include="Migrations\201707171225572_Init.cs" />
+    <Compile Include="Migrations\201707171225572_Init.Designer.cs">
+      <DependentUpon>201707171225572_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707171151181_blub1.cs" />
-    <Compile Include="Migrations\201707171151181_blub1.Designer.cs">
-      <DependentUpon>201707171151181_blub1.cs</DependentUpon>
+    <Compile Include="Migrations\201707171403233_Init2.cs" />
+    <Compile Include="Migrations\201707171403233_Init2.Designer.cs">
+      <DependentUpon>201707171403233_Init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -291,6 +293,16 @@
     <Content Include="Views\Activities\Details.cshtml" />
     <Content Include="Views\Activities\Edit.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\Delete.cshtml" />
+    <Content Include="Views\Teachers\Details.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Delete.cshtml" />
+    <Content Include="Views\Students\Details.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -311,11 +323,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707171136547_init.resx">
-      <DependentUpon>201707171136547_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707171225572_Init.resx">
+      <DependentUpon>201707171225572_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707171151181_blub1.resx">
-      <DependentUpon>201707171151181_blub1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707171403233_Init2.resx">
+      <DependentUpon>201707171403233_Init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
