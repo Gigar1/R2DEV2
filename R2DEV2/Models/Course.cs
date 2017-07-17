@@ -6,14 +6,14 @@ using System.Web;
 
 namespace R2DEV2.Models
 {
-    public class CourseClass
+    public class Course
     {
         [Key]
-        public int Id { get; set; }
+        public int CourseId { get; set; }
         public string CourseName { get; set; }
-        public DateTime StartTime { get; set; }
-        public TimeSpan Duration { get; set; }
-        public DateTime EndTime { get { return StartTime + Duration; } }
+        public DateTime CourseStartTime { get; set; }
+        public TimeSpan CourseDuration { get; set; }
+        public DateTime CourseEndTime { get { return CourseStartTime + CourseDuration; } }
 
         public virtual ICollection<ApplicationUser> AttendingUsers { get; set; }
 

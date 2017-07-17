@@ -27,7 +27,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
+            Course courseClass = db.CourseClasses.Find(id);
             if (courseClass == null)
             {
                 return HttpNotFound();
@@ -42,11 +42,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Course/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
+        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +63,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
+            Course courseClass = db.CourseClasses.Find(id);
             if (courseClass == null)
             {
                 return HttpNotFound();
@@ -74,11 +72,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Course/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
+        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +92,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
+            Course courseClass = db.CourseClasses.Find(id);
             if (courseClass == null)
             {
                 return HttpNotFound();
@@ -109,7 +105,7 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CourseClass courseClass = db.CourseClasses.Find(id);
+            Course courseClass = db.CourseClasses.Find(id);
             db.CourseClasses.Remove(courseClass);
             db.SaveChanges();
             return RedirectToAction("Index");

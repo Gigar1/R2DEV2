@@ -6,10 +6,10 @@ using System.Web;
 
 namespace R2DEV2.Models
 {
-    public class ModuleClass
+    public class Module
     {
         [Key]
-        public int Id { get; set; }
+        public int ModuleId { get; set; }
         public string ModuleName { get; set; }
         public string ModuleDescription { get; set; }
 

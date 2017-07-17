@@ -27,7 +27,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ActivityClass activityClass = db.ActivityClasses.Find(id);
+            Activity activityClass = db.ActivityClasses.Find(id);
             if (activityClass == null)
             {
                 return HttpNotFound();
@@ -42,11 +42,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Activity/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] ActivityClass activityClass)
+        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activityClass)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +63,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ActivityClass activityClass = db.ActivityClasses.Find(id);
+            Activity activityClass = db.ActivityClasses.Find(id);
             if (activityClass == null)
             {
                 return HttpNotFound();
@@ -74,11 +72,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Activity/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] ActivityClass activityClass)
+        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activityClass)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +92,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ActivityClass activityClass = db.ActivityClasses.Find(id);
+            Activity activityClass = db.ActivityClasses.Find(id);
             if (activityClass == null)
             {
                 return HttpNotFound();
@@ -109,7 +105,7 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ActivityClass activityClass = db.ActivityClasses.Find(id);
+            Activity activityClass = db.ActivityClasses.Find(id);
             db.ActivityClasses.Remove(activityClass);
             db.SaveChanges();
             return RedirectToAction("Index");

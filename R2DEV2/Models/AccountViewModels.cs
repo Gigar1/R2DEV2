@@ -15,6 +15,8 @@ namespace R2DEV2.Models
         public string ReturnUrl { get; set; }
     }
 
+
+    //NOT USED
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
@@ -22,7 +24,6 @@ namespace R2DEV2.Models
         public string ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
-
     public class VerifyCodeViewModel
     {
         [Required]
@@ -38,13 +39,13 @@ namespace R2DEV2.Models
 
         public bool RememberMe { get; set; }
     }
-
     public class ForgotViewModel
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
 
     public class LoginViewModel
     {
@@ -89,6 +90,7 @@ namespace R2DEV2.Models
         public string ConfirmPassword { get; set; }
     }
 
+    //NOT USED
     public class ResetPasswordViewModel
     {
         [Required]
@@ -109,7 +111,6 @@ namespace R2DEV2.Models
 
         public string Code { get; set; }
     }
-
     public class ForgotPasswordViewModel
     {
         [Required]

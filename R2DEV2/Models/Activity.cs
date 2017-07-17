@@ -6,14 +6,14 @@ using System.Web;
 
 namespace R2DEV2.Models
 {
-    public class ActivityClass
+    public class Activity
     {
         [Key]
-        public int Id { get; set; }
+        public int ActivityId { get; set; }
         public string ActivityName { get; set; }
         public string ActivityDescription { get; set; }
-        public DateTime StartTime { get; set; }
-        public TimeSpan Duration { get; set; }
-        public DateTime EndTime { get { return StartTime + Duration; } }
+        public DateTime ActivityStartTime { get; set; }
+        public TimeSpan ActivityDuration { get; set; }
+        public DateTime ActivityEndTime { get { return ActivityStartTime + ActivityDuration; } }
     }
 }

@@ -15,9 +15,9 @@ namespace R2DEV2.Models
         public string LastName { get; set; }
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
-        public ICollection<CourseClass> AttendedClasses { get; set; }
+        //public ICollection<CourseClass> AttendedClasses { get; set; }
 
-
+        //Generate Identity
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -41,10 +41,10 @@ namespace R2DEV2.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.CourseClass> CourseClasses { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Course> CourseClasses { get; set; }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.ModuleClass> ModuleControllers { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Module> ModuleControllers { get; set; }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.ActivityClass> ActivityClasses { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Activity> ActivityClasses { get; set; }
     }
 }

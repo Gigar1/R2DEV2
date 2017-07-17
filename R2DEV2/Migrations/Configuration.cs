@@ -4,6 +4,7 @@ namespace R2DEV2.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using R2DEV2.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -68,6 +69,63 @@ namespace R2DEV2.Migrations
                 }
                 i++;
             }
+
+            Course[] course = new Course[] {
+                    new Course
+                {
+                    CourseName = "Course1",
+                    CourseDuration = new TimeSpan(0, 30, 0),
+                    CourseStartTime = new DateTime(1999, 02, 06),
+                    AttendingUsers = new List<ApplicationUser>()
+                },
+                    new Course
+                {
+                    CourseName = "Course2",
+                    CourseDuration = new TimeSpan(0, 30, 0),
+                    CourseStartTime = new DateTime(2999, 02, 06),
+                    AttendingUsers = new List<ApplicationUser>()
+                }
+            };
+
+            Module[] module = new Module[] {
+                    new Module
+                {
+                    ModuleName = "Module1",
+                    ModuleDescription = "Module1 Description",
+                    //Duration = new TimeSpan(0, 30, 0),
+                    //StartTime = new DateTime(1999, 02, 06),
+                    //AttendingMembers = new List<ApplicationUser>()
+                },
+                    new Module
+                {
+                    ModuleName = "Module2",
+                    ModuleDescription = "Module2 Description",
+                    //Duration = new TimeSpan(0, 30, 0),
+                    //StartTime = new DateTime(2999, 02, 06),
+                    //AttendingMembers = new List<ApplicationUser>()
+                }
+            };
+
+            Activity[] activity = new Activity[] {
+                    new Activity
+                {
+                    ActivityName = "Activity1",
+                    ActivityDescription = "Activity1 Description",
+                    ActivityDuration = new TimeSpan(0, 30, 0),
+                    ActivityStartTime = new DateTime(1999, 02, 06),
+                    //AttendingMembers = new List<ApplicationUser>()
+                },
+                    new Activity
+                {
+                    ActivityName = "Activity2",
+                    ActivityDescription = "Activity2",
+                    ActivityDuration = new TimeSpan(0, 30, 0),
+                    ActivityStartTime = new DateTime(2999, 02, 06),
+                    //AttendingMembers = new List<ApplicationUser>()
+                }
+            };
+
+
             //////ApplicationUser adminUser = userManager.FindByName("admin@admin.ad");
             //userManager.AddToRole(adminUser.Id, "Admin");
 

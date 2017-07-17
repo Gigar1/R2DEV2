@@ -27,7 +27,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            Module moduleClass = db.ModuleControllers.Find(id);
             if (moduleClass == null)
             {
                 return HttpNotFound();
@@ -42,11 +42,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Module/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] ModuleClass moduleClass)
+        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] Module moduleClass)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +63,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            Module moduleClass = db.ModuleControllers.Find(id);
             if (moduleClass == null)
             {
                 return HttpNotFound();
@@ -74,11 +72,9 @@ namespace R2DEV2.Controllers
         }
 
         // POST: Module/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] ModuleClass moduleClass)
+        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] Module moduleClass)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +92,7 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            Module moduleClass = db.ModuleControllers.Find(id);
             if (moduleClass == null)
             {
                 return HttpNotFound();
@@ -109,7 +105,7 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            Module moduleClass = db.ModuleControllers.Find(id);
             db.ModuleControllers.Remove(moduleClass);
             db.SaveChanges();
             return RedirectToAction("Index");
