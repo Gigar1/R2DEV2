@@ -1,4 +1,4 @@
-﻿@model IEnumerable<R2DEV2.Models.ActivityClass>
+﻿@model IEnumerable<R2DEV2.Models.Activity>
 
 @{
     ViewBag.Title = "Index";
@@ -18,10 +18,10 @@
             @Html.DisplayNameFor(model => model.ActivityDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.ActivityStartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Duration)
+            @Html.DisplayNameFor(model => model.ActivityDuration)
         </th>
         <th></th>
     </tr>
@@ -35,10 +35,10 @@
             @Html.DisplayFor(modelItem => item.ActivityDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
+            @Html.DisplayFor(modelItem => item.ActivityStartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Duration)
+            @Html.DisplayFor(modelItem => item.ActivityDuration)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

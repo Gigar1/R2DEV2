@@ -1,4 +1,4 @@
-﻿@model R2DEV2.Models.ActivityClass
+﻿@model R2DEV2.Models.Activity
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>ActivityClass</h4>
+    <h4>Activity</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,19 +27,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.ActivityStartTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartTime)
+            @Html.DisplayFor(model => model.ActivityStartTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Duration)
+            @Html.DisplayNameFor(model => model.ActivityDuration)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Duration)
+            @Html.DisplayFor(model => model.ActivityDuration)
         </dd>
 
     </dl>

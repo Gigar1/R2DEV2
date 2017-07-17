@@ -9,11 +9,13 @@ namespace R2DEV2.Models
     public class Activity
     {
         [Key]
-        public int ActivityId { get; set; }
+        public int Id { get; set; }
         public string ActivityName { get; set; }
         public string ActivityDescription { get; set; }
         public DateTime ActivityStartTime { get; set; }
         public TimeSpan ActivityDuration { get; set; }
         public DateTime ActivityEndTime { get { return ActivityStartTime + ActivityDuration; } }
+
+        public virtual Activity Activites { get; set; }
     }
 }

@@ -9,13 +9,14 @@ namespace R2DEV2.Models
     public class Module
     {
         [Key]
-        public int ModuleId { get; set; }
+        public int id { get; set; }
         public string ModuleName { get; set; }
         public string ModuleDescription { get; set; }
 
         public Course Course { get; set; }
 
-        //public virtual ICollection<ModuleClass> Activities { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual Module Modules { get; set; }
         //public virtual ICollection<ApplicationUser> Courses { get; set; }
     }
 }

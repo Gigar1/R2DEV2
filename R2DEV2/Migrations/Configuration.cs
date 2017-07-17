@@ -77,15 +77,15 @@ namespace R2DEV2.Migrations
                     new Course
                 {
                     CourseName = "Course1",
-                    CourseDuration = new TimeSpan(0, 30, 0),
-                    CourseStartTime = new DateTime(1999, 02, 06),
+                    //CourseDuration = new TimeSpan(0, 30, 0),
+                    //CourseStartTime = new DateTime(1999, 02, 06),
                     //AttendingUsers = new List<ApplicationUser>()
                 },
                     new Course
                 {
                     CourseName = "Course2",
-                    CourseDuration = new TimeSpan(0, 30, 0),
-                    CourseStartTime = new DateTime(2999, 02, 06),
+                    //CourseDuration = new TimeSpan(0, 30, 0),
+                    //CourseStartTime = new DateTime(2999, 02, 06),
                     //AttendingUsers = new List<ApplicationUser>()
                 }
             };

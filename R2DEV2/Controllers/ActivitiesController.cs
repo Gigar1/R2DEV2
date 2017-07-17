@@ -10,103 +10,107 @@ using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
 {
-    public class ModuleController : Controller
+    public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Module
+        // GET: Activities
         public ActionResult Index()
         {
-            return View(db.Modules.ToList());
+            return View(db.Activities.ToList());
         }
 
-        // GET: Module/Details/5
+        // GET: Activities/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(activity);
         }
 
-        // GET: Module/Create
+        // GET: Activities/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Module/Create
+        // POST: Activities/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.Modules.Add(module);
+                db.Activities.Add(activity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(module);
+            return View(activity);
         }
 
-        // GET: Module/Edit/5
+        // GET: Activities/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(activity);
         }
 
-        // POST: Module/Edit/5
+        // POST: Activities/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(module).State = EntityState.Modified;
+                db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(module);
+            return View(activity);
         }
 
-        // GET: Module/Delete/5
+        // GET: Activities/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(activity);
         }
 
-        // POST: Module/Delete/5
+        // POST: Activities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Module module = db.Modules.Find(id);
-            db.Modules.Remove(module);
+            Activity activity = db.Activities.Find(id);
+            db.Activities.Remove(activity);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

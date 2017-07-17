@@ -8,7 +8,7 @@ namespace R2DEV2.Models
 {
     public class Student
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Förnamn")]

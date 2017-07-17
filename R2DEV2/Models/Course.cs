@@ -9,13 +9,13 @@ namespace R2DEV2.Models
     public class Course
     {
         [Key]
-        public int CourseId { get; set; }
+        public int Id { get; set; }
         public string CourseName { get; set; }
-        public DateTime CourseStartTime { get; set; }
-        public TimeSpan CourseDuration { get; set; }
-        public DateTime CourseEndTime { get { return CourseStartTime + CourseDuration; } }
+        //public DateTime CourseStartTime { get; set; }
+        //public TimeSpan CourseDuration { get; set; }
+        //public DateTime CourseEndTime { get { return CourseStartTime + CourseDuration; } }
 
-        public virtual Module Module { get; set; }
+        public virtual ICollection<Module> Modules { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         //public Student Student { get; set; }
         

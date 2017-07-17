@@ -1,12 +1,14 @@
-﻿@model R2DEV2.Models.ModuleClass
+﻿@model R2DEV2.Models.Module
 
 @{
-    ViewBag.Title = "Detaljer";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Detaljer</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
+    <h4>Module</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,8 +28,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Tillbaka", "Index")
-</p>
