@@ -17,7 +17,7 @@ namespace R2DEV2.Controllers
         // GET: Module
         public ActionResult Index()
         {
-            return View(db.ModuleControllers.ToList());
+            return View(db.Modules.ToList());
         }
 
         // GET: Module/Details/5
@@ -27,12 +27,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module moduleClass = db.ModuleControllers.Find(id);
-            if (moduleClass == null)
+            Module module = db.Modules.Find(id);
+            if (module == null)
             {
                 return HttpNotFound();
             }
-            return View(moduleClass);
+            return View(module);
         }
 
         // GET: Module/Create
@@ -44,16 +44,16 @@ namespace R2DEV2.Controllers
         // POST: Module/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] Module moduleClass)
+        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] Module module)
         {
             if (ModelState.IsValid)
             {
-                db.ModuleControllers.Add(moduleClass);
+                db.Modules.Add(module);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(moduleClass);
+            return View(module);
         }
 
         // GET: Module/Edit/5
@@ -63,26 +63,26 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module moduleClass = db.ModuleControllers.Find(id);
-            if (moduleClass == null)
+            Module module = db.Modules.Find(id);
+            if (module == null)
             {
                 return HttpNotFound();
             }
-            return View(moduleClass);
+            return View(module);
         }
 
         // POST: Module/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] Module moduleClass)
+        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] Module module)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(moduleClass).State = EntityState.Modified;
+                db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(moduleClass);
+            return View(module);
         }
 
         // GET: Module/Delete/5
@@ -92,12 +92,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module moduleClass = db.ModuleControllers.Find(id);
-            if (moduleClass == null)
+            Module module = db.Modules.Find(id);
+            if (module == null)
             {
                 return HttpNotFound();
             }
-            return View(moduleClass);
+            return View(module);
         }
 
         // POST: Module/Delete/5
@@ -105,8 +105,8 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Module moduleClass = db.ModuleControllers.Find(id);
-            db.ModuleControllers.Remove(moduleClass);
+            Module module = db.Modules.Find(id);
+            db.Modules.Remove(module);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

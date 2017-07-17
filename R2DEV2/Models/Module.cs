@@ -13,7 +13,7 @@ namespace R2DEV2.Models
         public string ModuleName { get; set; }
         public string ModuleDescription { get; set; }
 
-        public CourseClass CourseClass { get; set; }
+        public Course Course { get; set; }
 
         //public virtual ICollection<ModuleClass> Activities { get; set; }
         //public virtual ICollection<ApplicationUser> Courses { get; set; }

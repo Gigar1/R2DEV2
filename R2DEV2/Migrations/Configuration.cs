@@ -68,6 +68,9 @@ namespace R2DEV2.Migrations
                     }
                 }
                 i++;
+
+                //if(context.Users.Any(u=>u.UserRole == userRole))
+                //{ }
             }
 
             Course[] course = new Course[] {
@@ -76,14 +79,14 @@ namespace R2DEV2.Migrations
                     CourseName = "Course1",
                     CourseDuration = new TimeSpan(0, 30, 0),
                     CourseStartTime = new DateTime(1999, 02, 06),
-                    AttendingUsers = new List<ApplicationUser>()
+                    //AttendingUsers = new List<ApplicationUser>()
                 },
                     new Course
                 {
                     CourseName = "Course2",
                     CourseDuration = new TimeSpan(0, 30, 0),
                     CourseStartTime = new DateTime(2999, 02, 06),
-                    AttendingUsers = new List<ApplicationUser>()
+                    //AttendingUsers = new List<ApplicationUser>()
                 }
             };
 

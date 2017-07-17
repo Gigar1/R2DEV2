@@ -17,7 +17,7 @@ namespace R2DEV2.Controllers
         // GET: Course
         public ActionResult Index()
         {
-            return View(db.CourseClasses.ToList());
+            return View(db.Courses.ToList());
         }
 
         // GET: Course/Details/5
@@ -27,12 +27,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            Course course = db.Courses.Find(id);
+            if (course == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(course);
         }
 
         // GET: Course/Create
@@ -44,16 +44,16 @@ namespace R2DEV2.Controllers
         // POST: Course/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course courseClass)
+        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course course)
         {
             if (ModelState.IsValid)
             {
-                db.CourseClasses.Add(courseClass);
+                db.Courses.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(courseClass);
+            return View(course);
         }
 
         // GET: Course/Edit/5
@@ -63,26 +63,26 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            Course course = db.Courses.Find(id);
+            if (course == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(course);
         }
 
         // POST: Course/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course courseClass)
+        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] Course course)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(courseClass).State = EntityState.Modified;
+                db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(courseClass);
+            return View(course);
         }
 
         // GET: Course/Delete/5
@@ -92,12 +92,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            Course course = db.Courses.Find(id);
+            if (course == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(course);
         }
 
         // POST: Course/Delete/5
@@ -105,8 +105,8 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course courseClass = db.CourseClasses.Find(id);
-            db.CourseClasses.Remove(courseClass);
+            Course course = db.Courses.Find(id);
+            db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

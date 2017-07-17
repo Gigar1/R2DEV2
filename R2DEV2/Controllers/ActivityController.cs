@@ -17,7 +17,7 @@ namespace R2DEV2.Controllers
         // GET: Activity
         public ActionResult Index()
         {
-            return View(db.ActivityClasses.ToList());
+            return View(db.Activities.ToList());
         }
 
         // GET: Activity/Details/5
@@ -27,12 +27,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activityClass = db.ActivityClasses.Find(id);
-            if (activityClass == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(activityClass);
+            return View(activity);
         }
 
         // GET: Activity/Create
@@ -44,16 +44,16 @@ namespace R2DEV2.Controllers
         // POST: Activity/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activityClass)
+        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.ActivityClasses.Add(activityClass);
+                db.Activities.Add(activity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(activityClass);
+            return View(activity);
         }
 
         // GET: Activity/Edit/5
@@ -63,26 +63,26 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activityClass = db.ActivityClasses.Find(id);
-            if (activityClass == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(activityClass);
+            return View(activity);
         }
 
         // POST: Activity/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activityClass)
+        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,StartTime,Duration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(activityClass).State = EntityState.Modified;
+                db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(activityClass);
+            return View(activity);
         }
 
         // GET: Activity/Delete/5
@@ -92,12 +92,12 @@ namespace R2DEV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activityClass = db.ActivityClasses.Find(id);
-            if (activityClass == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(activityClass);
+            return View(activity);
         }
 
         // POST: Activity/Delete/5
@@ -105,8 +105,8 @@ namespace R2DEV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Activity activityClass = db.ActivityClasses.Find(id);
-            db.ActivityClasses.Remove(activityClass);
+            Activity activity = db.Activities.Find(id);
+            db.Activities.Remove(activity);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

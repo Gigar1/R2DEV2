@@ -15,8 +15,10 @@ namespace R2DEV2.Models
         public TimeSpan CourseDuration { get; set; }
         public DateTime CourseEndTime { get { return CourseStartTime + CourseDuration; } }
 
+        public virtual Module Module { get; set; }
         public virtual ICollection<Student> Students { get; set; }
-        public Student Student { get; set; }
+        //public Student Student { get; set; }
+        
 
     }
 }

@@ -41,10 +41,10 @@ namespace R2DEV2.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.Course> CourseClasses { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Course> Courses { get; set; }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.Module> ModuleControllers { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Module> Modules { get; set; }
 
-        public System.Data.Entity.DbSet<R2DEV2.Models.Activity> ActivityClasses { get; set; }
+        public System.Data.Entity.DbSet<R2DEV2.Models.Activity> Activities { get; set; }
     }
 }
