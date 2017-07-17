@@ -11,7 +11,7 @@ namespace R2DEV2.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Course");
         }
 
         public ActionResult About()
