@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<R2DEV2.Models.Module>
-
+<link href="~/Content/Kurs.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
@@ -9,31 +9,44 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+
         <th>
             @Html.DisplayNameFor(model => model.ModuleName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModuleDescription)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuleDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+       
+           
 
-</table>
+            <table class="table">
+
+                @foreach (var item in Model)
+                {
+
+
+                    <div class="container">
+                        <div class="col-sm-12">
+                            <div class="bs-calltoaction bs-calltoaction-default">
+                                <div class="row">
+                                    <div class="col-md-9 cta-contents">
+                                        <h1 class="cta-title">@Html.DisplayFor(modelItem => item.ModuleName)</h1>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+
+                                        <div class="cta-desc">
+                                            <p>@Html.DisplayNameFor(model => model.ModuleDescription)</p>
+                                               
+
+                                            @Html.DisplayFor(modelItem => item.ModuleDescription)
+
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </table>

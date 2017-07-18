@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<R2DEV2.Models.Course>
+<link href="~/Content/Kurs.css" rel="stylesheet" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -8,26 +10,40 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th></th>
-    </tr>
+    </p>
+<p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @Html.ActionLink("ModulesList", "Index", "Modules")
+</p>
+
+<table class="table">
+    <p>
+        @Html.DisplayNameFor(model => model.CourseName)
+    </p>
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="bs-calltoaction bs-calltoaction-default">
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">@Html.DisplayFor(modelItem => item.CourseName)</h1>
+                            <div class="cta-desc">
+
+
+
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
 </table>
