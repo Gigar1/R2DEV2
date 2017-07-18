@@ -56,9 +56,10 @@
                         Skapa <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#skapa1" data-toggle="tab">Lärare</a></li>
-                        <li><a href="#skapa2" data-toggle="tab">Elev</a></li>
-                        <li><a href="#skapa3" data-toggle="tab">Kurs</a></li>
+                        <li><a href="#skapa1" data-toggle="tab">@Html.ActionLink("Lärare", "Create", "Teachers")</a></li>
+                        <li><a href="#skapa2" data-toggle="tab">@Html.ActionLink("Elev", "Create", "Students")</a></li>
+                        <li><a href="#skapa3" data-toggle="tab">@Html.ActionLink("Kurs", "Create", "Courses")</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -71,28 +72,31 @@
                 @RenderBody()
             </div>
         </div>
-        <div class="tab-pane fade" id="profile">
-            <div class="container body-content">
+        @*<div class="tab-pane fade" id="profile">
+            <div class="container body-content">*@
                 @*@RenderPage("~/Views/Home/About.cshtml")*@
-            </div>
-        </div>
+            @*</div>
+        </div>*@
+        <!--Lärare-->
+        @*<div class="tab-pane fade" id="skapa1"> 
+            <div class="container body-content">*@
+                
+    <!--Elev-->
+            @*</div >
+        </div >
 
-        <div class="tab-pane fade" id="skapa1"> <!--Lärare-->
-            <div class="container body-content">
-                @*@RenderPage("~/Views/Teachers/Create.cshtml")*@
-            </div>
-        </div>
-        <div class="tab-pane fade" id="skapa2"> <!--Elev-->
-            <div class="container body-content">
+        <div class="tab-pane fade" id="skapa2">
+            <div class="container body-content">*@
                 @*@RenderPage("~/Views/Students/Create.cshtml")*@
-            </div>
-        </div>
-        <div class="tab-pane fade" id="skapa3"> <!--Kurs-->
-            <div class="container body-content">
+            @*</div>*@
+    <!--Kurs-->
+        @*</div>
+        <div class="tab-pane fade" id="skapa3"> 
+            <div class="container body-content">*@
                 @*@RenderPage("~/Views/Course/Create.cshtml")*@
-            </div>
+            @*</div>
         </div>
-    </div>
+    </div>*@
 
     <hr class="container-fluid" />
     <footer class="container">
