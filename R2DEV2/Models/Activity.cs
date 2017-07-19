@@ -12,12 +12,15 @@ namespace R2DEV2.Models
         [Required]
         [Display(Name = "Activitetsnamn")]
         public string ActivityName { get; set; }
+
         [Required]
         [Display(Name = "Activitetsinfo")]
         public string ActivityDescription { get; set; }
+
         [Required]
         [Display(Name = "Starttid")]
         public DateTime ActivityStartTime { get; set; }
+
         [Required]
         [Display(Name = "Tidslängd")]
         public TimeSpan ActivityDuration { get; set; }

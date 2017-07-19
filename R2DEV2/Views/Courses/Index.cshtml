@@ -25,9 +25,13 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CourseId }) |
             @Html.ActionLink("Details", "Details", new { id=item.CourseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId })
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId }),
+
+            @Html.ActionLink("Create Modules", "Create", "Modules", new { courseId = 1 }, null)
         </td>
     </tr>
 }
 
 </table>
+
+
