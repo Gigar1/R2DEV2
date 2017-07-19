@@ -8,16 +8,22 @@ namespace R2DEV2.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Förnamn")]
-        public string FirstName { get; set; }
+        public string StudentFirstName { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name = "Efternamn")]
-        public string LastName { get; set; }
+        public string StudentLastName { get; set; }
+        public string StudentFullName
+        {
+            get { return StudentFirstName + " " + StudentLastName; }
+        }
+        public DateTime StudentEnrollmentDate { get; set; }
 
-        //public virtual ICollection<Enrollment> Enrollments { get; set; }
+        //public virtual ICollection<Course> Courses { get; set; }
+        public virtual Course Course { get; set; }
     }
 }

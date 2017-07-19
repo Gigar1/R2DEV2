@@ -9,8 +9,11 @@ namespace R2DEV2.Models
     public class Module
     {
         [Key]
-        public int id { get; set; }
+        public int ModuleId { get; set; }
+        [Required]
+        [Display(Name = "Modulnamn")]
         public string ModuleName { get; set; }
+        [Display(Name = "Modulinfo")]
         public string ModuleDescription { get; set; }
 
         public Course Course { get; set; }

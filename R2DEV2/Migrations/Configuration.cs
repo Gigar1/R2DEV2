@@ -15,22 +15,114 @@ namespace R2DEV2.Migrations
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "R2DEV2.Models.ApplicationDbContext";
+            //ContextKey = "R2DEV2.DAL.ApplicationDbContext";
         }
+
+        //protected override void Seed(R2DEV2.DAL.ApplicationDbContext context)
+        //{
+        //    var students = new List<Student>
+        //    {
+        //        new Student { FirstName = "Carson",   LastName = "Alexander", EnrollmentDate = DateTime.Parse("2010-09-01") },
+        //        new Student { FirstName = "Meredith", LastName = "Alonso", EnrollmentDate = DateTime.Parse("2012-09-01") },
+        //        new Student { FirstName = "Arturo",   LastName = "Anand", EnrollmentDate = DateTime.Parse("2013-09-01") },
+        //        new Student { FirstName = "Gytis",    LastName = "Barzdukas", EnrollmentDate = DateTime.Parse("2012-09-01") },
+        //        new Student { FirstName = "Yan",      LastName = "Li", EnrollmentDate = DateTime.Parse("2012-09-01") },
+        //        new Student { FirstName = "Peggy",    LastName = "Justice", EnrollmentDate = DateTime.Parse("2011-09-01") },
+        //        new Student { FirstName = "Laura",    LastName = "Norman", EnrollmentDate = DateTime.Parse("2013-09-01") },
+        //        new Student { FirstName = "Nino",     LastName = "Olivetto", EnrollmentDate = DateTime.Parse("2005-08-11") }
+        //    };
+        //    students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
+        //    context.SaveChanges();
+
+        //    var courses = new List<Course>
+        //    {
+        //        new Course {CourseId = 1050, CourseName = "Course1",},
+        //        new Course {CourseId = 4022, CourseName = "Course2",},
+        //        new Course {CourseId = 4041, CourseName = "Course3",},
+        //        new Course {CourseId = 1045, CourseName = "Course4",},
+        //        new Course {CourseId = 3141, CourseName = "Course5",},
+        //        new Course {CourseId = 2021, CourseName = "Course6",},
+        //        new Course {CourseId = 2042, CourseName = "Course7",}
+        //    };
+        //    courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseName, s));
+        //    context.SaveChanges();
+
+        //    var enrollments = new List<Enrollment>
+        //    {
+        //        new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Alexander").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
+        //            Grade = Grade.A
+        //        },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Alexander").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
+        //            Grade = Grade.C
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Alexander").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //             StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //             StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Alonso").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Anand").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Anand").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
+        //            Grade = Grade.B
+        //         },
+        //        new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Barzdukas").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Li").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Composition").CourseID,
+        //            Grade = Grade.B
+        //         },
+        //         new Enrollment {
+        //            StudentID = students.Single(s => s.LastName == "Justice").StudentID,
+        //            CourseID = courses.Single(c => c.Title == "Literature").CourseID,
+        //            Grade = Grade.B
+        //         }
+        //    };
+
+        //    foreach (Enrollment e in enrollments)
+        //    {
+        //        var enrollmentInDataBase = context.Enrollments.Where(
+        //            s =>
+        //                 s.Student.StudentID == e.StudentID &&
+        //                 s.Course.CourseID == e.CourseID).SingleOrDefault();
+        //        if (enrollmentInDataBase == null)
+        //        {
+        //            context.Enrollments.Add(e);
+        //        }
+        //    }
+        //    context.SaveChanges();
+        //}
 
         protected override void Seed(R2DEV2.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
 
             RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -73,60 +165,8 @@ namespace R2DEV2.Migrations
                 //{ }
             }
 
-            Course[] course = new Course[] {
-                    new Course
-                {
-                    CourseName = "Course1",
-                    //CourseDuration = new TimeSpan(0, 30, 0),
-                    //CourseStartTime = new DateTime(1999, 02, 06),
-                    //AttendingUsers = new List<ApplicationUser>()
-                },
-                    new Course
-                {
-                    CourseName = "Course2",
-                    //CourseDuration = new TimeSpan(0, 30, 0),
-                    //CourseStartTime = new DateTime(2999, 02, 06),
-                    //AttendingUsers = new List<ApplicationUser>()
-                }
-            };
 
-            Module[] module = new Module[] {
-                    new Module
-                {
-                    ModuleName = "Module1",
-                    ModuleDescription = "Module1 Description",
-                    //Duration = new TimeSpan(0, 30, 0),
-                    //StartTime = new DateTime(1999, 02, 06),
-                    //AttendingMembers = new List<ApplicationUser>()
-                },
-                    new Module
-                {
-                    ModuleName = "Module2",
-                    ModuleDescription = "Module2 Description",
-                    //Duration = new TimeSpan(0, 30, 0),
-                    //StartTime = new DateTime(2999, 02, 06),
-                    //AttendingMembers = new List<ApplicationUser>()
-                }
-            };
 
-            Activity[] activity = new Activity[] {
-                    new Activity
-                {
-                    ActivityName = "Activity1",
-                    ActivityDescription = "Activity1 Description",
-                    ActivityDuration = new TimeSpan(0, 30, 0),
-                    ActivityStartTime = new DateTime(1999, 02, 06),
-                    //AttendingMembers = new List<ApplicationUser>()
-                },
-                    new Activity
-                {
-                    ActivityName = "Activity2",
-                    ActivityDescription = "Activity2",
-                    ActivityDuration = new TimeSpan(0, 30, 0),
-                    ActivityStartTime = new DateTime(2999, 02, 06),
-                    //AttendingMembers = new List<ApplicationUser>()
-                }
-            };
 
 
             //////ApplicationUser adminUser = userManager.FindByName("admin@admin.ad");
@@ -139,6 +179,18 @@ namespace R2DEV2.Migrations
             //{
             //    userManager.AddToRole(user.Id, "Member");
             //}
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }
+

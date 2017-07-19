@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+////using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
@@ -46,7 +47,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
+        public ActionResult Create([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
+        public ActionResult Edit([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
         {
             if (ModelState.IsValid)
             {
