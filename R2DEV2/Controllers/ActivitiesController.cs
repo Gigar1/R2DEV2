@@ -15,13 +15,15 @@ namespace R2DEV2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Activities
+        #region GET: Activities
         public ActionResult Index()
         {
             return View(db.Activities.ToList());
         }
+        #endregion
 
-        // GET: Activities/Details/5
+
+        #region GET: Activities Details
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,16 +37,17 @@ namespace R2DEV2.Controllers
             }
             return View(activity);
         }
+        #endregion
 
-        // GET: Activities/Create
+
+        #region GET: Activities Create
         public ActionResult Create()
         {
             return View();
         }
+        #endregion
 
-        // POST: Activities/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        #region POST: Activities Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
@@ -58,8 +61,10 @@ namespace R2DEV2.Controllers
 
             return View(activity);
         }
+        #endregion
 
-        // GET: Activities/Edit/5
+
+        #region GET: Activities Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,10 +78,10 @@ namespace R2DEV2.Controllers
             }
             return View(activity);
         }
+        #endregion
 
+        #region POST: Activities Edit
         // POST: Activities/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
@@ -89,7 +94,10 @@ namespace R2DEV2.Controllers
             }
             return View(activity);
         }
+        #endregion
 
+
+        #region GET: Activities Delete
         // GET: Activities/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,8 +112,9 @@ namespace R2DEV2.Controllers
             }
             return View(activity);
         }
+        #endregion
 
-        // POST: Activities/Delete/5
+        #region POST: Activities Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -115,7 +124,10 @@ namespace R2DEV2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,5 +136,6 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }
