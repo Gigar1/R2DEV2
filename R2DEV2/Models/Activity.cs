@@ -23,6 +23,6 @@ namespace R2DEV2.Models
         public TimeSpan ActivityDuration { get; set; }
         public DateTime ActivityEndTime { get { return ActivityStartTime + ActivityDuration; } }
 
-        public virtual Activity Activites { get; set; }
+        public virtual Module Modules { get; set; }
     }
 }

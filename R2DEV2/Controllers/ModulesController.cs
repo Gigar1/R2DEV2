@@ -41,13 +41,15 @@ namespace R2DEV2.Controllers
 
 
         #region GET: Modules Create
-        public ActionResult Create(int courseId=2)
+        public ActionResult Create(int courseId = 2)
         {
             Course course = db.Courses.Find(courseId = 2);
             ViewBag.CourseId = course.CourseId;
             return View();
         }
-       
+        #endregion
+
+
 
         #region POST: Modules Create
         [HttpPost]
@@ -56,11 +58,10 @@ namespace R2DEV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                Course course = db.Courses.Find(ViewBag.Courses);
-                course.Modules.Add(module);
-                db.Modules.Add(module);
-                db.SaveChanges();
-                return RedirectToAction("Courses");
+                Course Module = db.Courses.Find(module);
+                ViewBag.CourseId = Module.CourseId;
+                return View();
+                //return RedirectToAction("Courses");
             }
 
             return View(module);
