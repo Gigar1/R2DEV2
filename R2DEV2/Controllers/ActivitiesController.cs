@@ -40,9 +40,18 @@ namespace R2DEV2.Controllers
         #endregion
 
 
+        //#region GET: Activities Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+        //#endregion
+
         #region GET: Activities Create
-        public ActionResult Create()
+        public ActionResult Create(int moduleId)
         {
+            Module module = db.Modules.Find(moduleId = 2);
+            ViewBag.ModuleId = module.ModuleId;
             return View();
         }
         #endregion

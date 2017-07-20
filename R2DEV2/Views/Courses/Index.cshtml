@@ -24,15 +24,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CourseName)
             </td>
-            @foreach (var blub in Model.Module)
+            @*@foreach (var blub in Model.Module)
             {
                 <dd>@courses.ModuleName</dd>
-            }
+            }*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CourseId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })|
-                @Html.ActionLink("Create Module", "Create", "Modules", new { courseId=1 }, null)
+                @*@Html.ActionLink("Create Module", "Create", "Modules", new { id = ViewBag.CourseId }, null)*@
             </td>
         </tr>
     }
