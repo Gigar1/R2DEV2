@@ -22,6 +22,13 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
+        //public ActionResult ListedModules()
+        //{
+        //    Module module = db.Modules.FirstOrDefault(m => m.ModuleName == ModuleName);
+        //    List<Course> Modules = db.Courses.Where(c => c.Modules.Contains<module>);
+        //    return View();
+        //}
+
 
         #region GET: Courses Details
         public ActionResult Details(int? id)
