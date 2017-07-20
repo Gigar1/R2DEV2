@@ -39,9 +39,8 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
-        #region GET: Modules Create
-        public ActionResult Create(int courseId=2)
+        // GET: Modules/Create
+        public ActionResult Create()
         {
             Course course = db.Courses.Find(courseId);
             ViewBag.CourseId = course.CourseId;
