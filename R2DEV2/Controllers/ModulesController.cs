@@ -40,13 +40,13 @@ namespace R2DEV2.Controllers
         #endregion
 
         // GET: Modules/Create
-        public ActionResult Create()
+        public ActionResult Create(int courseId = 2)
         {
             Course course = db.Courses.Find(courseId);
             ViewBag.CourseId = course.CourseId;
             return View();
         }
-        #endregion
+       
 
         #region POST: Modules Create
         [HttpPost]
