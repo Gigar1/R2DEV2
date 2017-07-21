@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using R2DEV2.Models;
+using R2DEV2.Models.Classes;
 
 namespace R2DEV2.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -46,7 +48,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
+        public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +60,27 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
+        public ActionResult CourseToggle(int id)
+        {
+            CourseClass CurrentClass = db.CourseClasses.Where(g => g.Id == id).FirstOrDefault();
+            ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+
+            if (CurrentClass.AttendingStudents.Contains(CurrentUser))
+            {
+                CurrentClass.AttendingStudents.Remove(CurrentUser);
+                db.SaveChanges();
+            }
+            else
+            {
+                CurrentClass.AttendingStudents.Add(CurrentUser);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Course/Edit/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +100,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseName,StartTime,Duration,CourseDescription")] CourseClass courseClass)
+        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +112,7 @@ namespace R2DEV2.Controllers
         }
 
         // GET: Course/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +129,7 @@ namespace R2DEV2.Controllers
 
         // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

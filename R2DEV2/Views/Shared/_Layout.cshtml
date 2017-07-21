@@ -23,7 +23,7 @@
             font-size: 28px;
         }
 
-        ul{
+        ul {
             margin-top: 2px;
         }
     </style>
@@ -48,7 +48,7 @@
         <!--LÄGG TILL KONTROLL FÖR LÄRARE-->
         <div class="container">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
+                <li class="active"><a href="" data-toggle="tab" aria-expanded="true">Hem</a></li>
                 <li class="disabled"><a>Granska</a></li>
                 <li class="disabled"><a>Schema</a></li>
                 <li class="dropdown">
@@ -64,34 +64,8 @@
             </ul>
         </div>
     </div>
-
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active in" id="home">
-            <div class="container body-content">
-                @RenderBody()
-            </div>
-        </div>
-        <div class="tab-pane fade" id="profile">
-            <div class="container body-content">
-                @*@RenderPage("~/Views/Home/About.cshtml")*@
-            </div>
-        </div>
-
-        <div class="tab-pane fade" id="skapa1"> <!--Lärare-->
-            <div class="container body-content">
-                @*@RenderPage("~/Views/Account/Register.cshtml")*@
-            </div>
-        </div>
-        <div class="tab-pane fade" id="skapa2"> <!--Elev-->
-            <div class="container body-content">
-                @*@RenderPage("~/Views/Home/Contact.cshtml")*@
-            </div>
-        </div>
-        <div class="tab-pane fade" id="skapa3"> <!--Kurs-->
-            <div class="container body-content">
-                @*@RenderPage("~/Views/Course/Create.cshtml")*@
-            </div>
-        </div>
+    <div class="container">
+        @RenderBody()
     </div>
 
     <hr class="container-fluid" />

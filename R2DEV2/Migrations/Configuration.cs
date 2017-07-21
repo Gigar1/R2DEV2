@@ -1,19 +1,20 @@
 namespace R2DEV2.Migrations
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using R2DEV2.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    //blub
+    using R2DEV2.Models;
+    using R2DEV2.Models.Classes;
+    using System.Collections.Generic;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     internal sealed class Configuration : DbMigrationsConfiguration<R2DEV2.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "R2DEV2.Models.ApplicationDbContext";
         }
 
         protected override void Seed(R2DEV2.Models.ApplicationDbContext context)
@@ -29,7 +30,6 @@ namespace R2DEV2.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
 
             RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -50,10 +50,10 @@ namespace R2DEV2.Migrations
 
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
-            string[] emails = new[] { "adam@edu.se", "bart@edu.se", "charlie@edu.se", "dan@edu.se", "erik@gmail.com", "fanny@hotmail.com", "gary@outlook.se", "henry@gmail.com" };
-            string[] firstName = new[] { "Adam", "Bart", "Charlie", "Dan", "Erik", "Fanny", "Gary", "Henry" };
-            string[] lastName = new[] { "Andersson", "Bertilsson", "Charles", "Dragonborn", "Eriksson", "F", "G", "H" };
-            string[] userRole = new[] { "Teacher", "Teacher", "Teacher", "Teacher", "Student", "Student", "Student", "Student" };
+            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se" };
+            string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle" };
+            string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren" };
+
             int i = 0;
             foreach (string email in emails)
             {
@@ -68,16 +68,53 @@ namespace R2DEV2.Migrations
                 }
                 i++;
             }
-            //////ApplicationUser adminUser = userManager.FindByName("admin@admin.ad");
-            //userManager.AddToRole(adminUser.Id, "Admin");
 
-            //adminUser = userManager.FindByName("admin@gymbokning.se");
-            //userManager.AddToRole(adminUser.Id, "Admin");
+            ApplicationUser Teacher = userManager.FindByName("john@lexicon.se");
+            userManager.AddToRole(Teacher.Id, "Teacher");
 
-            //foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "admin@admin.ad" || u.Email != "admin@gymbokning.se")))
-            //{
-            //    userManager.AddToRole(user.Id, "Member");
-            //}
+            Teacher = userManager.FindByName("teacher@lexicon.se");
+            userManager.AddToRole(Teacher.Id, "Teacher");
+
+            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "admin@admin.ad" && u.Email != "admin@Gymbokning.se")))
+            {
+                userManager.AddToRole(user.Id, "Student");
+            }
+
+            context.SaveChanges();
+
+            CourseClass[] course = new CourseClass[] {
+                new CourseClass
+                {
+                    Name = ".NET Höst 2015",
+                    Description = "En superrolig kurs som passar alla mellan 10 - 100 år. I kursen ingår moduler som 'Databasdesign', 'AngularJS'.",
+                    Duration = new TimeSpan(2, 60, 0),
+                    StartTime = new DateTime(2015, 09, 11),
+                    AttendingStudents = new List<ApplicationUser>()
+                },
+
+                 new CourseClass
+                {
+                    Name = "Ny programmeringskurs 2019",
+                    Description = "Vi lär dig allt om programmering.",
+                    Duration = new TimeSpan(12, 30, 23),
+                    StartTime = new DateTime(2019, 02, 06),
+                    AttendingStudents = new List<ApplicationUser>()
+                },
+
+                 new CourseClass
+                {
+                    Name = "Shoppingkurs distans 2017",
+                    Description = "Handla fina saker online.",
+                    Duration = new TimeSpan(21, 30, 23),
+                    StartTime = new DateTime(2017, 02, 06),
+                    AttendingStudents = new List<ApplicationUser>()
+                }
+            };
+
+            foreach (CourseClass g in course)
+            {
+                context.CourseClasses.Add(g);
+            }
         }
     }
 }
