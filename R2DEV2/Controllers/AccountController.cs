@@ -179,7 +179,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -193,7 +193,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -230,7 +230,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
@@ -274,7 +274,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -294,7 +294,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
@@ -330,7 +330,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
