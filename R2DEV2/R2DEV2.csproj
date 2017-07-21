@@ -197,9 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707201202113_init.cs" />
-    <Compile Include="Migrations\201707201202113_init.Designer.cs">
-      <DependentUpon>201707201202113_init.cs</DependentUpon>
+    <Compile Include="Migrations\201707212235049_Init.cs" />
+    <Compile Include="Migrations\201707212235049_Init.Designer.cs">
+      <DependentUpon>201707212235049_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -306,8 +306,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707201202113_init.resx">
-      <DependentUpon>201707201202113_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707212235049_Init.resx">
+      <DependentUpon>201707212235049_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -324,7 +324,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49866</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
