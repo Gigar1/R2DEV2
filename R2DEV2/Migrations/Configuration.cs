@@ -19,18 +19,6 @@ namespace R2DEV2.Migrations
 
         protected override void Seed(R2DEV2.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-
             RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
 
@@ -50,9 +38,10 @@ namespace R2DEV2.Migrations
 
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
-            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se" };
-            string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle" };
-            string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren" };
+            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "elev@lexicon.se" };
+            string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Elev" };
+            string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Lexicon" };
+
 
             int i = 0;
             foreach (string email in emails)
@@ -85,28 +74,158 @@ namespace R2DEV2.Migrations
             CourseClass[] course = new CourseClass[] {
                 new CourseClass
                 {
-                    Name = ".NET Höst 2015",
+                    Name = ".NET Höst",
                     Description = "En superrolig kurs som passar alla mellan 10 - 100 år. I kursen ingår moduler som 'Databasdesign', 'AngularJS'.",
-                    Duration = new TimeSpan(2, 60, 0),
                     StartTime = new DateTime(2015, 09, 11),
+                    EndTime = new DateTime(2015, 12, 11),
+                    Modules = new List<ModuleClass>
+                    {
+                        new ModuleClass
+                        {
+                            Name = "Bootstrap & CSS",
+                            Description = "Lär dig pynta din sida med lite basic bootstrap och css.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>
+                            {
+                                new ActivityClass
+                                {
+                                    Name = "Uppgift 1",
+                                    Description = "Det här är en beskrivning till Uppgift 1",
+                                    StartTime = new DateTime(2015, 10, 14),
+                                    EndTime = new DateTime(2015, 10, 14)
+                                },
+
+                                new ActivityClass
+                                {
+                                    Name = "Uppgift 2",
+                                    Description = "Det här är en beskrivning till Uppgift 3",
+                                    StartTime = new DateTime(2015, 10, 14),
+                                    EndTime = new DateTime(2015, 10, 14)
+                                },
+
+                                new ActivityClass
+                                {
+                                    Name = "Uppgift 3",
+                                    Description = "Det här är en beskrivning till Uppgift 3",
+                                    StartTime = new DateTime(2015, 10, 14),
+                                    EndTime = new DateTime(2015, 10, 14)
+                                },
+
+                                new ActivityClass
+                                {
+                                    Name = "Uppgift 4",
+                                    Description = "Det här är en beskrivning till Uppgift 4",
+                                    StartTime = new DateTime(2015, 10, 14),
+                                    EndTime = new DateTime(2015, 10, 14)
+                                },
+
+                                new ActivityClass
+                                {
+                                    Name = "Uppgift 5",
+                                    Description = "Det här är en beskrivning till Uppgift 5",
+                                    StartTime = new DateTime(2015, 10, 14),
+                                    EndTime = new DateTime(2015, 10, 14)
+                                }
+                            },
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "AngularJS",
+                            Description = "Grunderna för AngularJS.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "Databasdesign",
+                            Description = "Det är svårare än vad ni tror.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        }
+                    },
                     AttendingStudents = new List<ApplicationUser>()
                 },
 
+
                  new CourseClass
                 {
-                    Name = "Ny programmeringskurs 2019",
+                    Name = "Ny programmeringskurs",
                     Description = "Vi lär dig allt om programmering.",
-                    Duration = new TimeSpan(12, 30, 23),
                     StartTime = new DateTime(2019, 02, 06),
+                    EndTime = new DateTime(2019, 08, 23),
+                    Modules = new List<ModuleClass>
+                    {
+                        new ModuleClass
+                        {
+                            Name = "C#",
+                            Description = "Lär dig grunderna för C# programmering.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "JavaScript",
+                            Description = "Lär dig grunderna för utveckling med JavaScript.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "PHP",
+                            Description = "Lär dig PHP.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "Python",
+                            Description = "Lär dig grunderna för Python utveckling.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        }
+                    },
                     AttendingStudents = new List<ApplicationUser>()
                 },
 
+
                  new CourseClass
                 {
-                    Name = "Shoppingkurs distans 2017",
+                    Name = "Shoppingkurs distans",
                     Description = "Handla fina saker online.",
-                    Duration = new TimeSpan(21, 30, 23),
                     StartTime = new DateTime(2017, 02, 06),
+                    EndTime = new DateTime(2017, 09, 11),
+                    Modules = new List<ModuleClass>
+                    {
+                        new ModuleClass
+                        {
+                            Name = "Onlineshopping",
+                            Description = "Lär dig handla kläder, elektronik och annat kul ONLINE!",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        },
+
+                        new ModuleClass
+                        {
+                            Name = "Butikshopping",
+                            Description = "Lär dig gå och strosa runt på stan som en kung.",
+                            StartTime = new DateTime(2015, 10, 14),
+                            EndTime = new DateTime(2015, 11, 14),
+                            Activities = new List<ActivityClass>()
+                        }
+                    },
                     AttendingStudents = new List<ApplicationUser>()
                 }
             };
@@ -115,6 +234,7 @@ namespace R2DEV2.Migrations
             {
                 context.CourseClasses.Add(g);
             }
+            context.SaveChanges();
         }
     }
 }

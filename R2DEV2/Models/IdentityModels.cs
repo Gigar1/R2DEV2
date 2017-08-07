@@ -16,9 +16,9 @@ namespace R2DEV2.Models
         public string LastName { get; set; }
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
-        public virtual ICollection<CourseClass> AttendingClass { get; set; }
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public virtual CourseClass AttendingClass { get; set; }
 
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -30,6 +30,8 @@ namespace R2DEV2.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<CourseClass> CourseClasses { get; set; }
+        public DbSet<ModuleClass> ModuleClasses { get; set; }
+        public DbSet<ActivityClass> ActivityClasses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -7,141 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using R2DEV2.Models;
-using R2DEV2.Models.Classes;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
 
 namespace R2DEV2.Controllers
 {
-    public class CourseController : Controller
+    public class ModuleController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public object UserUtils { get; private set; }
-
-        // GET: Course
-        [Authorize]
+        // GET: Module
         public ActionResult Index()
         {
-            return View(db.CourseClasses.ToList());
+            return View(db.ModuleControllers.ToList());
         }
 
-        // GET: Course/Details/5
+        // GET: Module/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            if (moduleClass == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(moduleClass);
         }
 
-        public ActionResult CourseToggle(int id)
-        {
-            CourseClass CurrentClass = db.CourseClasses.Where(g => g.Id == id).FirstOrDefault();
-            ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-
-            if (CurrentClass.AttendingStudents.Contains(CurrentUser))
-            {
-                CurrentClass.AttendingStudents.Remove(CurrentUser);
-                db.SaveChanges();
-            }
-            else
-            {
-                CurrentClass.AttendingStudents.Add(CurrentUser);
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Course/Create
-        [Authorize(Roles = "Teacher")]
+        // GET: Module/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Course/Create
+        // POST: Module/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
+        public ActionResult Create([Bind(Include = "Id,ModuleName,ModuleDescription")] ModuleClass moduleClass)
         {
             if (ModelState.IsValid)
             {
-                db.CourseClasses.Add(courseClass);
+                db.ModuleControllers.Add(moduleClass);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(courseClass);
+            return View(moduleClass);
         }
 
-        // GET: Course/Edit/5
-        [Authorize(Roles = "Teacher")]
+        // GET: Module/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            if (moduleClass == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(moduleClass);
         }
 
-        // POST: Course/Edit/5
+        // POST: Module/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
+        public ActionResult Edit([Bind(Include = "Id,ModuleName,ModuleDescription")] ModuleClass moduleClass)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(courseClass).State = EntityState.Modified;
+                db.Entry(moduleClass).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(courseClass);
+            return View(moduleClass);
         }
 
-        // GET: Course/Delete/5
-        [Authorize(Roles = "Teacher")]
+        // GET: Module/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            if (moduleClass == null)
             {
                 return HttpNotFound();
             }
-            return View(courseClass);
+            return View(moduleClass);
         }
 
-        // POST: Course/Delete/5
+        // POST: Module/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CourseClass courseClass = db.CourseClasses.Find(id);
-            db.CourseClasses.Remove(courseClass);
+            ModuleClass moduleClass = db.ModuleControllers.Find(id);
+            db.ModuleControllers.Remove(moduleClass);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

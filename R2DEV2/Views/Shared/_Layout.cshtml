@@ -10,9 +10,32 @@
 
 <body>
     <style>
+        html {
+            background-color: #e7e7e7;
+        }
+
+        body {
+            padding-bottom: 0px;
+        }
+
+        #content {
+            min-height: 45em;
+            background-color: white;
+        }
+
+        #access {
+            font-size: 30px;
+            color: white;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            font-weight: bolder;
+        }
+
         #adminPanel {
             background-color: #e7e7e7;
             margin-top: -5px;
+            margin-bottom: 21px;
             min-height: 43px;
         }
 
@@ -26,6 +49,11 @@
         ul {
             margin-top: 2px;
         }
+
+        footer {
+            background-color: #e7e7e7;
+            min-height: 8em;
+        }
     </style>
 
     <div class="navbar-default navbar-fixed-top">
@@ -36,7 +64,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("LEXICON", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("LEXICON", "Index", "Course", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
@@ -46,35 +74,60 @@
 
     <div id="adminPanel" class="container-fluid">
         <!--LÄGG TILL KONTROLL FÖR LÄRARE-->
-        <div class="container">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="" data-toggle="tab" aria-expanded="true">Hem</a></li>
-                <li class="disabled"><a>Granska</a></li>
-                <li class="disabled"><a>Schema</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Skapa <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#skapa1" data-toggle="tab">Lärare</a></li>
-                        <li><a href="#skapa2" data-toggle="tab">Elev</a></li>
-                        <li><a href="#skapa3" data-toggle="tab">Kurs</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        @if (User.IsInRole("Teacher"))
+        {
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
+                    <li><a href="#NyKurs" data-toggle="tab">Ny Kurs</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Lägg till<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#NyLärare" data-toggle="tab">Lärare</a></li>
+                            <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
+                        </ul>
+                    </li>
+                    <li class="disabled"><a>Sök</a></li>
+                </ul>
+            </div>
+        }
     </div>
-    <div class="container">
+    
+    <div id="content" class="container">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home"></div>
+
+            <div class="tab-pane fade" id="NyLärare">
+                Skapa ny Lärare
+                <hr class="container-fluid" />
+            </div>
+
+            <div class="tab-pane fade" id="NyElev">
+                Skapa ny Elev
+                <hr class="container-fluid" />
+            </div>
+
+            <div class="tab-pane fade" id="NyKurs">
+                <p>
+                    Här ska vi kunna skapa en kurs
+                </p>
+                <hr class="container-fluid" />
+            </div>
+        </div>
         @RenderBody()
     </div>
-
-    <hr class="container-fluid" />
-    <footer class="container">
-        <p>&copy; @DateTime.Now.Year - R2DEV2</p>
-    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - R2DEV2</p>
+        </div>
+    </footer>
 </body>
 </html>

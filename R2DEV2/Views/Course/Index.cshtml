@@ -6,24 +6,37 @@
 
 <style>
     h2, h4{
-        margin-top: 15px;
+        margin-top: 0px;
         margin-bottom: 10px;
+        color: black;
     }
-    hr {
-        margin-bottom:0px;
+
+        h2 > a {
+            color: black;
+        }
+    h2 > a:hover {
+        color: black;
+        font-weight: bolder;
+        text-decoration: none;
     }
 </style> 
 
 @foreach (var item in Model)
 {
     <div class="container-fluid">
-        <div class="col-md-9">
-            <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+        <div class="col-sm-9 col-xs-12">
+            <h2>
+                @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                <br class="hidden-lg"/>
+                <small>
+                    @Html.DisplayFor(modelItem => item.StartTime) till
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </small>
+            </h2>
+
             @Html.DisplayFor(modelItem => item.Description)
             <br />
-            @Html.DisplayFor(modelItem => item.StartTime) -
-            @Html.DisplayFor(modelItem => item.EndTime)
-            <br />
+
             @if (User.IsInRole("Teacher"))
             {
                 @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) <span>|</span>
@@ -39,9 +52,9 @@
                 @Html.ActionLink("Ansök", "CourseToggle", new { id = item.Id })
             }
         </div>
-
-        <div class="col-md-3" id="deltagarlista">
-            <h4>Deltagarlista</h4>
+        
+        <div class="col-sm-3 hidden-xs" id="deltagarlista">
+            <h4>Deltagare: </h4>
             @foreach (var attendingStudent in item.AttendingStudents)
             {
                 @attendingStudent.FullName
@@ -52,10 +65,13 @@
     <hr class="container" />
 }
 
-<div class="container-fluid">
-    <div class="col-md-12">
-        <p>
-            @Html.ActionLink("Skapa ny", "Create")
-        </p>
+@if (User.IsInRole("Teacher"))
+{
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <p>
+                @Html.ActionLink("Skapa ny", "Create")
+            </p>
+        </div>
     </div>
-</div>
+}
