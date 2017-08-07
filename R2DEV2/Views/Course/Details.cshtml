@@ -30,6 +30,7 @@
     <div class="col-md-9">
         <h2>
             @Html.DisplayFor(model => model.Name)
+           
             <br class="hidden-lg" />
             <small>
                 @Html.DisplayFor(model => model.StartTime) till
@@ -44,11 +45,26 @@
                 {
                     <div class="panel-heading">
                         <h4 class="panel-title">
+                           
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
                                 @modules.Id<span>. </span>@modules.Name
+                                
+                               
                             </a>
                         </h4>
+
                     </div>
+
+                   
+                    @*@Html.ActionLink("Tabort",  "ModuleClasses", "Delete", new { id = modules.Id })<span>|</span>
+
+                    @Html.ActionLink(modules.Name, "Details", new { id = modules.Id })*@
+
+                    @Html.ActionLink("Tabort", "Delete", "ModuleClasses", new {id = modules.Id  }, null )
+
+
+
+
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
                             @modules.Description
@@ -69,7 +85,8 @@
                     <div id="NyModul" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <p>
-                                                             @Html.ActionLink("Ny Module", "Create", "ModuleClasses"@*,new { CourseClassId = Model.Id }*@)
+                                                             @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
+                               
                                                             
                             </p>
                         </div>

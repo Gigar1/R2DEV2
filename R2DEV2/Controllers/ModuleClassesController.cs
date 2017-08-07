@@ -96,8 +96,9 @@ namespace WebApplication23.Controllers
         }
 
         // GET: ModuleClasses/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
-        {
+         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,7 +119,7 @@ namespace WebApplication23.Controllers
             ModuleClass moduleClass = db.ModuleClasses.Find(id);
             db.ModuleClasses.Remove(moduleClass);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Course", new { id = moduleClass.CourseClassId });
         }
 
         protected override void Dispose(bool disposing)
