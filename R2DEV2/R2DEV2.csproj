@@ -197,13 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707191218448_meep.cs" />
-    <Compile Include="Migrations\201707191218448_meep.Designer.cs">
-      <DependentUpon>201707191218448_meep.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707191220301_meepjer.cs" />
-    <Compile Include="Migrations\201707191220301_meepjer.Designer.cs">
-      <DependentUpon>201707191220301_meepjer.cs</DependentUpon>
+    <Compile Include="Migrations\201707191233584_Init2.cs" />
+    <Compile Include="Migrations\201707191233584_Init2.Designer.cs">
+      <DependentUpon>201707191233584_Init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -310,11 +306,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707191218448_meep.resx">
-      <DependentUpon>201707191218448_meep.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707191220301_meepjer.resx">
-      <DependentUpon>201707191220301_meepjer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707191233584_Init2.resx">
+      <DependentUpon>201707191233584_Init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
