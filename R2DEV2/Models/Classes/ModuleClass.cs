@@ -13,8 +13,9 @@ namespace R2DEV2.Models.Classes
         public string Description { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int CourseClassId { get; set; }
 
         public virtual ICollection<ActivityClass> Activities { get; set; }
-        public virtual ICollection<CourseClass> Courses { get; set; }
+        public virtual CourseClass Course { get; set; }
     }
 }
