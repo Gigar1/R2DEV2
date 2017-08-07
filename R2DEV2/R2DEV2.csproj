@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ModuleClassesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +271,11 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Modules.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\ModuleClasses\Create.cshtml" />
+    <Content Include="Views\ModuleClasses\Delete.cshtml" />
+    <Content Include="Views\ModuleClasses\Details.cshtml" />
+    <Content Include="Views\ModuleClasses\Edit.cshtml" />
+    <Content Include="Views\ModuleClasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
