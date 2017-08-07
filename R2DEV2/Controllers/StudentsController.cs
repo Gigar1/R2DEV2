@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
@@ -18,7 +17,7 @@ namespace R2DEV2.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(/*db.Students.ToList()*/);
+            return View(db.Students.ToList());
         }
 
         // GET: Students/Details/5
@@ -47,7 +46,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,StudentFirstName,StudentLastName,StudentEnrollmentDate")] Student student)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +78,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,StudentFirstName,StudentLastName,StudentEnrollmentDate")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {

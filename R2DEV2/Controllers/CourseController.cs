@@ -11,6 +11,7 @@ using R2DEV2.Models.Classes;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 
+/*tEst */
 namespace R2DEV2.Controllers
 {
     public class CourseController : Controller

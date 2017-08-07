@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
@@ -47,7 +46,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TeacherId,TeacherFirstName,TeacherLastName")] Teacher teacher)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +78,7 @@ namespace R2DEV2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TeacherId,TeacherFirstName,TeacherLastName")] Teacher teacher)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {

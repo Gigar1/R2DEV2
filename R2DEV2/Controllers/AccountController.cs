@@ -157,7 +157,7 @@ namespace R2DEV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -169,7 +169,7 @@ namespace R2DEV2.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Course");
                 }
                 AddErrors(result);
             }
@@ -179,7 +179,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -193,7 +193,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -230,7 +230,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
@@ -274,7 +274,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -294,7 +294,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
@@ -330,7 +330,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-
+        //Not used
         #region GET: Account ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
@@ -406,7 +406,7 @@ namespace R2DEV2.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Course");
         }
         #endregion
 
@@ -469,7 +469,7 @@ namespace R2DEV2.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Course");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

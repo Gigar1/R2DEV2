@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace R2DEV2.Models
 {
@@ -15,8 +16,6 @@ namespace R2DEV2.Models
         public string ReturnUrl { get; set; }
     }
 
-
-    //NOT USED
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
@@ -24,6 +23,7 @@ namespace R2DEV2.Models
         public string ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
+
     public class VerifyCodeViewModel
     {
         [Required]
@@ -39,13 +39,13 @@ namespace R2DEV2.Models
 
         public bool RememberMe { get; set; }
     }
+
     public class ForgotViewModel
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
-
 
     public class LoginViewModel
     {
@@ -66,31 +66,27 @@ namespace R2DEV2.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Förnamn")]
-        public string FNamn { get; set; }
-
-        [Required]
-        [Display(Name = "Efternamn")]
-        public string ENamn { get; set; }
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
+        public DateTime TimeOfRegistration { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Lösenord")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Bekräfta lösenord")]
+        [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
-    //NOT USED
     public class ResetPasswordViewModel
     {
         [Required]
@@ -111,6 +107,7 @@ namespace R2DEV2.Models
 
         public string Code { get; set; }
     }
+
     public class ForgotPasswordViewModel
     {
         [Required]
