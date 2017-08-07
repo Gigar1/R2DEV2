@@ -4,6 +4,9 @@
     ViewBag.Title = "Details";
 }
 
+@*item = varje entry
+model = hela listan*@
+
 <h2>Details</h2>
 
 <div>
@@ -21,6 +24,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseId }) |
     @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Create Module", "Create", "Modules", new { id = ViewBag.CourseId }, null)*@
+    @Html.ActionLink("Create Module", "Create", "Modules", new {id = Model.CourseId}, null)
 </p>

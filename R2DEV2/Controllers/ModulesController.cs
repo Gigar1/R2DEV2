@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+//using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
@@ -14,13 +15,15 @@ namespace R2DEV2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Modules
+        #region GET: Modules
         public ActionResult Index()
         {
             return View(db.Modules.ToList());
         }
+        #endregion
 
-        // GET: Modules/Details/5
+
+        #region GET: Modules Details
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,31 +37,38 @@ namespace R2DEV2.Controllers
             }
             return View(module);
         }
+        #endregion
 
-        // GET: Modules/Create
-        public ActionResult Create()
+
+        #region GET: Modules Create
+        public ActionResult Create(int? id)
         {
+            Course course = db.Courses.Find(id);
+            ViewBag.CourseId = course.CourseId;
             return View();
         }
+        #endregion
 
-        // POST: Modules/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        #region POST: Modules Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Create([Bind(Include = "ModuleId,ModuleName,ModuleDescription")] Module module)
         {
             if (ModelState.IsValid)
             {
+                Course course = db.Courses.Find(ViewBag.CourseId=module.ModuleId);
+                course.Modules.Add(module);
                 db.Modules.Add(module);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Courses");
             }
 
             return View(module);
         }
+        #endregion
+        
 
-        // GET: Modules/Edit/5
+        #region GET: Modules Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -72,13 +82,12 @@ namespace R2DEV2.Controllers
             }
             return View(module);
         }
+        #endregion
 
-        // POST: Modules/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        #region POST: Modules Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Edit([Bind(Include = "ModuleId,ModuleName,ModuleDescription")] Module module)
         {
             if (ModelState.IsValid)
             {
@@ -88,8 +97,10 @@ namespace R2DEV2.Controllers
             }
             return View(module);
         }
+        #endregion
 
-        // GET: Modules/Delete/5
+
+        #region GET: Modules Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,8 +114,9 @@ namespace R2DEV2.Controllers
             }
             return View(module);
         }
+        #endregion
 
-        // POST: Modules/Delete/5
+        #region POST: Modules Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -114,7 +126,10 @@ namespace R2DEV2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,5 +138,6 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }

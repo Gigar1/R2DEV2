@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using R2DEV2.Models.Classes;
 using System.Collections.Generic;
 using System;
 
@@ -15,9 +16,8 @@ namespace R2DEV2.Models
         public string LastName { get; set; }
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
-        //public ICollection<CourseClass> AttendedClasses { get; set; }
+        public virtual CourseClass AttendingClass { get; set; }
 
-        //Generate Identity
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -29,7 +29,9 @@ namespace R2DEV2.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public DbSet<CourseClass> CourseClasses { get; set; }
+        public DbSet<CourseClass> CourseClasses { get; set; }
+        public DbSet<ModuleClass> ModuleClasses { get; set; }
+        public DbSet<ActivityClass> ActivityClasses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -40,15 +42,5 @@ namespace R2DEV2.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<R2DEV2.Models.Course> Courses { get; set; }
-
-        public System.Data.Entity.DbSet<R2DEV2.Models.Module> Modules { get; set; }
-
-        public System.Data.Entity.DbSet<R2DEV2.Models.Activity> Activities { get; set; }
-
-        public System.Data.Entity.DbSet<R2DEV2.Models.Teacher> Teachers { get; set; }
-
-        public System.Data.Entity.DbSet<R2DEV2.Models.Student> Students { get; set; }
     }
 }

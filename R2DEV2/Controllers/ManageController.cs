@@ -16,9 +16,11 @@ namespace R2DEV2.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
         public ManageController()
         {
         }
+
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -26,17 +28,19 @@ namespace R2DEV2.Controllers
             SignInManager = signInManager;
         }
 
+
         public ApplicationSignInManager SignInManager
         {
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
+
 
         public ApplicationUserManager UserManager
         {
@@ -50,8 +54,8 @@ namespace R2DEV2.Controllers
             }
         }
 
-        //
-        // GET: /Manage/Index
+
+        #region GET: Manage Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -74,9 +78,9 @@ namespace R2DEV2.Controllers
             };
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Manage/RemoveLogin
+        #region POST: Manage RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -98,16 +102,17 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
+        #endregion
 
-        //
-        // GET: /Manage/AddPhoneNumber
+
+        #region GET: Manage AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Manage/AddPhoneNumber
+        #region POST: Manage AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -129,9 +134,10 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
+        #endregion
 
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
+
+        #region POST: Manage EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -144,9 +150,10 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
+        #endregion
 
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
+
+        #region POST: Manage DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -159,18 +166,19 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
+        #endregion
 
-        //
-        // GET: /Manage/VerifyPhoneNumber
+
+        #region GET:  Manage VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
             // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
+        #endregion
 
-        //
-        // POST: /Manage/VerifyPhoneNumber
+        #region POST: Manage VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -193,9 +201,10 @@ namespace R2DEV2.Controllers
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Manage/RemovePhoneNumber
+
+        #region POST: Manage RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -212,16 +221,17 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
+        #endregion
 
-        //
-        // GET: /Manage/ChangePassword
+
+        #region GET: Manage ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Manage/ChangePassword
+        #region POST: Manage ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -243,16 +253,17 @@ namespace R2DEV2.Controllers
             AddErrors(result);
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Manage/SetPassword
+
+        #region GET: Manage SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Manage/SetPassword
+        #region POST: Manage SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -275,9 +286,10 @@ namespace R2DEV2.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Manage/ManageLogins
+
+        #region GET: Manage ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -298,9 +310,9 @@ namespace R2DEV2.Controllers
                 OtherLogins = otherLogins
             });
         }
+        #endregion
 
-        //
-        // POST: /Manage/LinkLogin
+        #region POST: Manage LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -308,9 +320,10 @@ namespace R2DEV2.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
+        #endregion
 
-        //
-        // GET: /Manage/LinkLoginCallback
+
+        #region GET: Manage LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -320,8 +333,12 @@ namespace R2DEV2.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
-        }
 
+        }
+        #endregion
+
+
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -332,8 +349,10 @@ namespace R2DEV2.Controllers
 
             base.Dispose(disposing);
         }
+        #endregion
 
-#region Helpers
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +403,6 @@ namespace R2DEV2.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
