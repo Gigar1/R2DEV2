@@ -1,0 +1,98 @@
+﻿@model R2DEV2.Models.Classes.CourseClass
+
+@{
+    ViewBag.Title = "Kurs";
+}
+
+<style>
+    h2, h4 {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    hr {
+        margin-bottom: 0px;
+    }
+
+    .panel-title {
+        font-weight: bolder;
+        font-size: 16px;
+    }
+
+    .panel-default > .panel-heading {
+        background-color: #e7e7e7;
+    }
+</style> 
+
+<div class="container-fluid">
+    <div class="col-md-9">
+        <h2>
+            @Html.DisplayFor(model => model.Name)
+            <br class="hidden-lg" />
+            <small>
+                @Html.DisplayFor(model => model.StartTime) till
+                @Html.DisplayFor(model => model.EndTime)
+            </small>
+        </h2>
+
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                @foreach (var modules in Model.Modules)
+                {
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
+                                @modules.Id<span>. </span>@modules.Name
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@modules.Id" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @modules.Description
+
+                        </div>
+                    </div>
+                }
+
+                @if (User.IsInRole("Teacher"))
+                {
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="NyModul" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <p>
+                                Här kan vi skapa en ny modul.
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Deltagare: </h4>
+        @foreach (var attendingStudent in Model.AttendingStudents)
+        {
+            @attendingStudent.FullName
+            <br />
+        }
+    </div>
+
+    <div class="col-md-9">
+        @if (User.IsInRole("Teacher"))
+        {
+            @Html.ActionLink("Ändra", "Edit", new { id = Model.Id }) <span>|</span>
+            @Html.ActionLink("Ta bort", "Delete", new { id = Model.Id }) <span>|</span>
+        }
+
+        @Html.ActionLink("Tillbaka", "Index")
+    </div>
+</div>
+

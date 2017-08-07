@@ -6,133 +6,146 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using R2DEV2.DAL;
 using R2DEV2.Models;
+using R2DEV2.Models.Classes;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace R2DEV2.Controllers
 {
-    public class CoursesController : Controller
+    public class CourseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        #region GET: Courses
+        public object UserUtils { get; private set; }
+
+        // GET: Course
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(db.CourseClasses.ToList());
         }
-        #endregion
 
-        //public ActionResult ListedModules()
-        //{
-        //    Module module = db.Modules.FirstOrDefault(m => m.ModuleName == ModuleName);
-        //    List<Course> Modules = db.Courses.Where(c => c.Modules.Contains<module>);
-        //    return View();
-        //}
-
-
-        #region GET: Courses Details
+        // GET: Course/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            CourseClass courseClass = db.CourseClasses.Find(id);
+            if (courseClass == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(courseClass);
         }
-        #endregion
 
+        public ActionResult CourseToggle(int id)
+        {
+            CourseClass CurrentClass = db.CourseClasses.Where(g => g.Id == id).FirstOrDefault();
+            ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
 
-        #region GET: Courses Create
+            if (CurrentClass.AttendingStudents.Contains(CurrentUser))
+            {
+                CurrentClass.AttendingStudents.Remove(CurrentUser);
+                db.SaveChanges();
+            }
+            else
+            {
+                CurrentClass.AttendingStudents.Add(CurrentUser);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Course/Create
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             return View();
         }
-        #endregion
 
-        #region POST: Courses Create
+        // POST: Course/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseId,CourseName")] Course course)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.CourseClasses.Add(courseClass);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(courseClass);
         }
-        #endregion
 
-
-        #region GET: Courses Edit
+        // GET: Course/Edit/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            CourseClass courseClass = db.CourseClasses.Find(id);
+            if (courseClass == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(courseClass);
         }
-        #endregion
 
-        #region POST: Courses Edit
+        // POST: Course/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseId,CourseName")] Course course)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(courseClass).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(courseClass);
         }
-        #endregion
 
-
-        #region GET: Courses Delete
+        // GET: Course/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            CourseClass courseClass = db.CourseClasses.Find(id);
+            if (courseClass == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(courseClass);
         }
-        #endregion
 
-        #region POST: Courses Delete
+        // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            CourseClass courseClass = db.CourseClasses.Find(id);
+            db.CourseClasses.Remove(courseClass);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        #endregion
 
-
-        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -141,6 +154,5 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
-        #endregion
     }
 }
