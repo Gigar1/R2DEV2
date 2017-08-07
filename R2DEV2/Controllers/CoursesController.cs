@@ -15,13 +15,22 @@ namespace R2DEV2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
+        #region GET: Courses
         public ActionResult Index()
         {
             return View(db.Courses.ToList());
         }
+        #endregion
 
-        // GET: Courses/Details/5
+        //public ActionResult ListedModules()
+        //{
+        //    Module module = db.Modules.FirstOrDefault(m => m.ModuleName == ModuleName);
+        //    List<Course> Modules = db.Courses.Where(c => c.Modules.Contains<module>);
+        //    return View();
+        //}
+
+
+        #region GET: Courses Details
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,16 +44,17 @@ namespace R2DEV2.Controllers
             }
             return View(course);
         }
+        #endregion
 
-        // GET: Courses/Create
+
+        #region GET: Courses Create
         public ActionResult Create()
         {
             return View();
         }
+        #endregion
 
-        // POST: Courses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        #region POST: Courses Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseId,CourseName")] Course course)
@@ -58,8 +68,10 @@ namespace R2DEV2.Controllers
 
             return View(course);
         }
+        #endregion
 
-        // GET: Courses/Edit/5
+
+        #region GET: Courses Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,10 +85,9 @@ namespace R2DEV2.Controllers
             }
             return View(course);
         }
+        #endregion
 
-        // POST: Courses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        #region POST: Courses Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CourseId,CourseName")] Course course)
@@ -89,8 +100,10 @@ namespace R2DEV2.Controllers
             }
             return View(course);
         }
+        #endregion
 
-        // GET: Courses/Delete/5
+
+        #region GET: Courses Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,8 +117,9 @@ namespace R2DEV2.Controllers
             }
             return View(course);
         }
+        #endregion
 
-        // POST: Courses/Delete/5
+        #region POST: Courses Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -115,7 +129,10 @@ namespace R2DEV2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,5 +141,6 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }
