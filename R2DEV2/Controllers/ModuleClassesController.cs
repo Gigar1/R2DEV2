@@ -55,7 +55,7 @@ namespace WebApplication23.Controllers
             {
                 db.ModuleClasses.Add(moduleClass);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Course", new { id = moduleClass.CourseClassId});
             }
 
             ViewBag.CourseClassId = new SelectList(db.CourseClasses, "Id", "Name", moduleClass.CourseClassId);
