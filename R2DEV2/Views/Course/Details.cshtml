@@ -22,15 +22,13 @@
     .panel-default > .panel-heading {
         background-color: #e7e7e7;
     }
-</style> 
-
-@*test*@
+</style>
 
 <div class="container-fluid">
     <div class="col-md-9">
         <h2>
             @Html.DisplayFor(model => model.Name)
-           
+
             <br class="hidden-lg" />
             <small>
                 @Html.DisplayFor(model => model.StartTime) till
@@ -41,15 +39,17 @@
 
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
+
                 @foreach (var modules in Model.Modules)
                 {
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                           
+
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @modules.Id<span>. </span>@modules.Name
-                                
-                               
+                                @modules.Id<span>. </span>
+                                @modules.Name
+                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null)   <span>|</span>
+                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null)
                             </a>
                         </h4>
 
@@ -84,30 +84,38 @@
                             <div class="panel-body">
                                 @modules.Description
 
-                            </div>
+                            @foreach(var activities in modules.Activities )
+                            {
+                                @activities.Name
+                                <br />
+                            }
+
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                @Html.ActionLink("Ny Activity", "Create", "ActivityClasses")
+                            }
                         </div>
-                        }
+                    </div>
+                }
 
-                        @if (User.IsInRole("Teacher"))
+                @if (User.IsInRole("Teacher"))
                 {
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="NyModul" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <p>
-                                        @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
-
-
-                                    </p>
-                                </div>
-                            </div>
-                        }
-</div>,
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="NyModul" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                             <p>
+                                 @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
+                             </p>
+                        </div>
+                    </div>
+                }
+            </div>,
         </div>
     </div>
 
