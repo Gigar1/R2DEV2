@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201708080802592_wutie.Designer.cs">
       <DependentUpon>201708080802592_wutie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708080854158_nw.cs" />
+    <Compile Include="Migrations\201708080854158_nw.Designer.cs">
+      <DependentUpon>201708080854158_nw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
     <Compile Include="Models\Classes\CourseClass.cs" />
@@ -293,6 +297,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708080802592_wutie.resx">
       <DependentUpon>201708080802592_wutie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708080854158_nw.resx">
+      <DependentUpon>201708080854158_nw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

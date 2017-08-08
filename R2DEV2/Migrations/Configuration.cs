@@ -36,41 +36,6 @@ namespace R2DEV2.Migrations
                 }
             }
 
-            UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
-            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
-            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "elev@lexicon.se" };
-            string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Elev" };
-            string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Lexicon" };
-
-
-            int i = 0;
-            foreach (string email in emails)
-            {
-                if (!context.Users.Any(u => u.UserName == email))
-                {
-                    ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now };
-                    var result = userManager.Create(user, "password");
-                    if (!result.Succeeded)
-                    {
-                        throw new Exception(string.Join("\n", result.Errors));
-                    }
-                }
-                i++;
-            }
-
-            ApplicationUser Teacher = userManager.FindByName("john@lexicon.se");
-            userManager.AddToRole(Teacher.Id, "Teacher");
-
-            Teacher = userManager.FindByName("teacher@lexicon.se");
-            userManager.AddToRole(Teacher.Id, "Teacher");
-
-            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "admin@admin.ad" && u.Email != "admin@Gymbokning.se")))
-            {
-                userManager.AddToRole(user.Id, "Student");
-            }
-
-            context.SaveChanges();
-
             CourseClass[] course = new CourseClass[] {
                 new CourseClass
                 {
@@ -230,10 +195,46 @@ namespace R2DEV2.Migrations
                 }
             };
 
+
             foreach (CourseClass g in course)
             {
                 context.CourseClasses.Add(g);
             }
+            context.SaveChanges();
+
+            UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
+            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "elev@lexicon.se" };
+            string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Elev" };
+            string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Lexicon" };
+            int[] courseClassId = new[] { 1,2,3,1,2,3,1,2,3 };
+
+            int i = 0;
+            foreach (string email in emails)
+            {
+                if (!context.Users.Any(u => u.UserName == email))
+                {
+                    ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = courseClassId[i]};
+                    var result = userManager.Create(user, "password");
+                    if (!result.Succeeded)
+                    {
+                        throw new Exception(string.Join("\n", result.Errors));
+                    }
+                }
+                i++;
+            }
+
+            ApplicationUser Teacher = userManager.FindByName("john@lexicon.se");
+            userManager.AddToRole(Teacher.Id, "Teacher");
+
+            Teacher = userManager.FindByName("teacher@lexicon.se");
+            userManager.AddToRole(Teacher.Id, "Teacher");
+
+            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "admin@admin.ad" && u.Email != "admin@Gymbokning.se")))
+            {
+                userManager.AddToRole(user.Id, "Student");
+            }
+
             context.SaveChanges();
         }
     }
