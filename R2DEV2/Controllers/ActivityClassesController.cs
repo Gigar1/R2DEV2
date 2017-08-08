@@ -38,9 +38,9 @@ namespace WebApplication23.Controllers
         }
 
         // GET: ActivityClasses/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name");
+            //ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name");
             return View();
         }
 
@@ -49,10 +49,11 @@ namespace WebApplication23.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime,ModuleClassId")] ActivityClass activityClass)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime,ModuleClassId")] ActivityClass activityClass, int id)
         {
             if (ModelState.IsValid)
             {
+                activityClass.ModuleClassId = id;
                 db.ActivityClasses.Add(activityClass);
                 db.SaveChanges();
                 var courseId = db.ModuleClasses.Find(activityClass.ModuleClassId).CourseClassId;
@@ -60,7 +61,7 @@ namespace WebApplication23.Controllers
                 return RedirectToAction("Details", "Course", new { id = courseId });
             }
 
-            ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name", activityClass.ModuleClassId);
+            //ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name", activityClass.ModuleClassId);
             //ViewBag.ActivityClassId = new SelectList(db.ActivityClasses, "Id", "Name", activityClass.ModuleClassId);
             return View(activityClass);
         }
