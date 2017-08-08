@@ -47,21 +47,17 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
                                 @modules.Id<span>. </span>
                                 @modules.Name
-                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null)   <span>|</span>
-                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null)
+                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> <span>|</span>
+                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                             </a>
                         </h4>
-
                     </div>
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @modules.Description
-                            <br />
-
                             @foreach(var activities in modules.Activities )
                             {
-                                @activities.Name
+                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)
                                 <br />
                             }
 
@@ -90,7 +86,7 @@
                         </div>
                     </div>
                 }
-            </div>,
+            </div>
         </div>
     </div>
 
