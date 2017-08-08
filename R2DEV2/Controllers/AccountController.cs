@@ -142,67 +142,37 @@ namespace R2DEV2.Controllers
 
 
         #region GET: Account Register
-        [AllowAnonymous]
-        public ActionResult Register()
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
+        public ActionResult Register(int id)
         {
+            ViewBag.CourseClassId = id;
             return View();
         }
         #endregion
 
         #region POST: Account Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, int id)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = id};
+                var result = await UserManager.CreateAsync(user, "Password1!");
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                   await UserManager.AddToRoleAsync(user.Id, "Student");
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Course");
+                    return RedirectToAction("Details", "Course", new { id = id });
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-        #endregion
-
-
-        #region GET: Register Student
-        [Authorize(Roles = "Teacher")]
-        public ActionResult RegisterStudent()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Teacher" )]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterStudent(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-
-                    return RedirectToAction("Details", "Course");
-                }
-                AddErrors(result);
-            }
             return View(model);
         }
         #endregion

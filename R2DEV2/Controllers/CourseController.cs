@@ -11,7 +11,6 @@ using R2DEV2.Models.Classes;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 
-/*tEst */
 namespace R2DEV2.Controllers
 {
     public class CourseController : Controller
@@ -25,7 +24,16 @@ namespace R2DEV2.Controllers
         public ActionResult Index()
         {
             //var currentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-            return View(db.CourseClasses.ToList());
+            if (User.IsInRole("Teacher"))
+            {
+                return View(db.CourseClasses.ToList());
+            }
+            
+            else
+            {
+                var userId = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().CourseClassId;
+                return RedirectToAction("Details", "Course", new { id = userId });
+            }
         }
 
         // GET: Course/Details/5
@@ -41,27 +49,6 @@ namespace R2DEV2.Controllers
                 return HttpNotFound();
             }
             return View(courseClass);
-        }
-
-        //Student
-        public ActionResult CourseToggle(int id)
-        {
-            CourseClass CurrentClass = db.CourseClasses.Where(g => g.Id == id).FirstOrDefault();
-            ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-            
-            //Remove Student
-            if (CurrentClass.AttendingStudents.Contains(CurrentUser))
-            {
-                CurrentClass.AttendingStudents.Remove(CurrentUser);
-                db.SaveChanges();
-            }//Add Student
-            else
-            {
-                CurrentClass.AttendingStudents.Add(CurrentUser);
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
         }
 
         // GET: Course/Create
