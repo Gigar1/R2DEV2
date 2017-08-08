@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201708080848520_23.Designer.cs">
       <DependentUpon>201708080848520_23.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708080854158_nw.cs" />
+    <Compile Include="Migrations\201708080854158_nw.Designer.cs">
+      <DependentUpon>201708080854158_nw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
     <Compile Include="Models\Classes\CourseClass.cs" />
@@ -272,15 +276,6 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Modules.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
-    <Content Include="Views\ModuleClasses\Create.cshtml" />
-    <Content Include="Views\ModuleClasses\Delete.cshtml" />
-    <Content Include="Views\ModuleClasses\Details.cshtml" />
-    <Content Include="Views\ModuleClasses\Edit.cshtml" />
-    <Content Include="Views\ActivityClasses\Create.cshtml" />
-    <Content Include="Views\ActivityClasses\Delete.cshtml" />
-    <Content Include="Views\ActivityClasses\Details.cshtml" />
-    <Content Include="Views\ActivityClasses\Edit.cshtml" />
-    <Content Include="Views\ActivityClasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,6 +298,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708080848520_23.resx">
       <DependentUpon>201708080848520_23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708080854158_nw.resx">
+      <DependentUpon>201708080854158_nw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
