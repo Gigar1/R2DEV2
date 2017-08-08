@@ -179,6 +179,35 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
+
+        [Authorize(Roles = "Teacher")]
+        #region GET: Register Student
+        public ActionResult RegisterStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Teacher" )]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterStudent(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+
+                    return RedirectToAction("Index", "Course");
+                }
+                AddErrors(result);
+            }
+            return View(model);
+        }
+        #endregion
+
+
         //Not used
         #region GET: Account ConfirmEmail
         [AllowAnonymous]
