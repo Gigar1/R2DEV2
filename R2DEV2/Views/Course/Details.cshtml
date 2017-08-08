@@ -46,21 +46,32 @@
                         <h4 class="panel-title">
 
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @modules.Id<span>. </span>@modules.Name
+                                @modules.Id<span>. </span>
+                                @modules.Name
+                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
                                 
-                               
+                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                             </a>
                         </h4>
                     </div>
+                    
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @foreach(var activities in modules.Activities )
+                            @foreach (var activities in modules.Activities)
                             {
-                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)
+                                
+                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)  <span>        |</span>
+
+                                @Html.ActionLink("Redigera", "Edit", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
+                                @Html.ActionLink("Ta Bort", "Delete", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+
+
 
                                 <br />
                             }
+                           
+                           @Html.ActionLink("Ny Activity", "Create", "ActivityClasses")
 
                             </div>
                         </div>

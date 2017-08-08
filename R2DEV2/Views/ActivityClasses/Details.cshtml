@@ -10,6 +10,7 @@
     <h4>ActivityClass</h4>
     <hr />
     <dl class="dl-horizontal">
+      
         <dt>
             @Html.DisplayNameFor(model => model.Module.Name)
         </dt>
@@ -26,13 +27,8 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+        
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.StartTime)
@@ -54,5 +50,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Details","Course"@*, new { id = Model.ModuleClassId}, null*@)
 </p>
