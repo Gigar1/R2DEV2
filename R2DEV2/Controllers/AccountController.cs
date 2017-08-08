@@ -180,7 +180,6 @@ namespace R2DEV2.Controllers
         #endregion
 
 
-
         #region GET: Register Student
         [Authorize(Roles = "Teacher")]
         public ActionResult RegisterStudent()
