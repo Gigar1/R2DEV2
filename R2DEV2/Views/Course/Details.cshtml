@@ -48,8 +48,8 @@
                                 @modules.Id<span>. </span>
                                 @modules.Name
 
-                                @*@Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
-                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>*@
+                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
+                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                             </a>
                         </h4>
                             @if (User.IsInRole("Teacher"))
@@ -71,9 +71,6 @@
 
                           @Html.ActionLink("Redigera", "Edit", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen" ></i><span>|</span>
                           @Html.ActionLink("Ta Bort", "Delete", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
-
-
-
                                 <br />
                             }
 
@@ -104,7 +101,7 @@
                                 </div>
                             </div>
                         }
-</div>,
+            </div>
         </div>
     </div>
 
