@@ -194,9 +194,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708070956114_shit.cs" />
-    <Compile Include="Migrations\201708070956114_shit.Designer.cs">
-      <DependentUpon>201708070956114_shit.cs</DependentUpon>
+    <Compile Include="Migrations\201708080802592_wutie.cs" />
+    <Compile Include="Migrations\201708080802592_wutie.Designer.cs">
+      <DependentUpon>201708080802592_wutie.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
@@ -290,8 +290,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708070956114_shit.resx">
-      <DependentUpon>201708070956114_shit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708080802592_wutie.resx">
+      <DependentUpon>201708080802592_wutie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
