@@ -38,9 +38,10 @@ namespace WebApplication23.Controllers
         }
 
         // GET: ModuleClasses/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.CourseClassId = new SelectList(db.CourseClasses, "Id", "Name");
+            ViewBag.CourseClassId = id;
+            //ViewBag.CourseClassId = new SelectList(db.CourseClasses, "Id", "Name");
             return View();
         }
 
@@ -49,16 +50,19 @@ namespace WebApplication23.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime,CourseClassId")] ModuleClass moduleClass)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime")] ModuleClass moduleClass, int id )
         {
             if (ModelState.IsValid)
             {
+                moduleClass.CourseClassId = id;
                 db.ModuleClasses.Add(moduleClass);
+              //  ModuleClass x = db.ModuleClasses.Find(id);
                 db.SaveChanges();
+               // var courseId = db.ModuleClasses.Find(moduleClass.CourseClassId).CourseClassId;
                 return RedirectToAction("Details", "Course", new { id = moduleClass.CourseClassId});
             }
 
-            ViewBag.CourseClassId = new SelectList(db.CourseClasses, "Id", "Name", moduleClass.CourseClassId);
+            //ViewBag.CourseClassId = new SelectList(db.CourseClasses, "Id", "Name", moduleClass.CourseClassId);
             return View(moduleClass);
         }
 
