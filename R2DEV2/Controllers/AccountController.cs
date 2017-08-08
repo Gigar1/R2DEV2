@@ -180,8 +180,8 @@ namespace R2DEV2.Controllers
         #endregion
 
 
-        [Authorize(Roles = "Teacher")]
         #region GET: Register Student
+        [Authorize(Roles = "Teacher")]
         public ActionResult RegisterStudent()
         {
             return View();
@@ -199,7 +199,7 @@ namespace R2DEV2.Controllers
                 if (result.Succeeded)
                 {
 
-                    return RedirectToAction("Index", "Course");
+                    return RedirectToAction("Details", "Course");
                 }
                 AddErrors(result);
             }

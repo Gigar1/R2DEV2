@@ -20,7 +20,7 @@ namespace R2DEV2.Models
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
         public virtual CourseClass AttendingClass { get; set; }
-        //public int CourseClassId { get; set; }
+        public int CourseClassId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

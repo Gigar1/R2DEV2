@@ -1,3 +1,6 @@
+using Microsoft.Ajax.Utilities;
+using R2DEV2.Models.Classes;
+
 namespace R2DEV2.Migrations
 {
     using System;
@@ -36,19 +39,189 @@ namespace R2DEV2.Migrations
                 }
             }
 
+            CourseClass[] course = new CourseClass[]
+            {
+            new CourseClass
+            {
+                Name = ".NET Höst",
+                Description = "En superrolig kurs som passar alla mellan 10 - 100 år. I kursen ingår moduler som 'Databasdesign', 'AngularJS'.",
+                StartTime = new DateTime(2015, 09, 11),
+                EndTime = new DateTime(2015, 12, 11),
+               
+            },
+
+            new CourseClass
+            {
+                Name = "Ny programmeringskurs",
+                Description = "Vi lär dig allt om programmering.",
+                StartTime = new DateTime(2019, 02, 06),
+                EndTime = new DateTime(2019, 08, 23),
+                
+            },
+
+            new CourseClass
+            {
+                Name = "Shoppingkurs distans",
+                Description = "Handla fina saker online.",
+                StartTime = new DateTime(2017, 02, 06),
+                EndTime = new DateTime(2017, 09, 11),
+               
+            },
+            };
+            context.CourseClasses.AddOrUpdate(c => c.Name, course);
+            context.SaveChanges();
+
+
+            ModuleClass[] module = new ModuleClass[]
+            {
+            new ModuleClass
+            {
+                Name = "AngularJS",
+                Description = "Grunderna för AngularJS.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[1].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "Databasdesign",
+                Description = "Det är svårare än vad ni tror.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[1].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "C#",
+                Description = "Lär dig grunderna för C# programmering.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[1].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "JavaScript",
+                Description = "Lär dig grunderna för utveckling med JavaScript.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId =  course[1].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "PHP",
+                Description = "Lär dig PHP.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[1].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "Python",
+                Description = "Lär dig grunderna för Python utveckling.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[2].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "Onlineshopping",
+                Description = "Lär dig handla kläder, elektronik och annat kul ONLINE!",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[2].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "Butikshopping",
+                Description = "Lär dig gå och strosa runt på stan som en kung.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[2].Id
+            },
+
+            new ModuleClass
+            {
+                Name = "Bootstrap & CSS",
+                Description = "Lär dig pynta din sida med lite basic bootstrap och css.",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 11, 14),
+                CourseClassId = course[2].Id
+            },
+            };
+            context.ModuleClasses.AddOrUpdate(m => m.Name, module);
+            context.SaveChanges();
+
+
+            ActivityClass[] activity = new ActivityClass[]
+            {
+            new ActivityClass
+            {
+                Name = "Uppgift 1",
+                Description = "Det här är en beskrivning till Uppgift 1",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 10, 14),
+                ModuleClassId = module[1].Id
+            },
+
+            new ActivityClass
+            {
+                Name = "Uppgift 2",
+                Description = "Det här är en beskrivning till Uppgift 3",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 10, 14),
+                ModuleClassId = module[1].Id
+            },
+
+            new ActivityClass
+            {
+                Name = "Uppgift 3",
+                Description = "Det här är en beskrivning till Uppgift 3",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 10, 14),
+                ModuleClassId = module[1].Id
+            },
+
+            new ActivityClass
+            {
+                Name = "Uppgift 4",
+                Description = "Det här är en beskrivning till Uppgift 4",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 10, 14),
+                ModuleClassId = module[2].Id
+            },
+
+            new ActivityClass
+            {
+                Name = "Uppgift 5",
+                Description = "Det här är en beskrivning till Uppgift 5",
+                StartTime = new DateTime(2015, 10, 14),
+                EndTime = new DateTime(2015, 10, 14),
+                ModuleClassId = module[2].Id
+            },
+            };
+            context.ActivityClasses.AddOrUpdate(a => a.Name, activity);
+            context.SaveChanges();
+
+
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
             string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "elev@lexicon.se" };
             string[] firstName = new[] { "John", "Teacher", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Elev" };
             string[] lastName = new[] { "Hellman", "Lexicon", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Lexicon" };
 
-
             int i = 0;
             foreach (string email in emails)
             {
                 if (!context.Users.Any(u => u.UserName == email))
                 {
-                    ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now };
+                    ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[1].Id };
                     var result = userManager.Create(user, "password");
                     if (!result.Succeeded)
                     {
@@ -64,177 +237,16 @@ namespace R2DEV2.Migrations
             Teacher = userManager.FindByName("teacher@lexicon.se");
             userManager.AddToRole(Teacher.Id, "Teacher");
 
-            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "admin@admin.ad" && u.Email != "admin@Gymbokning.se")))
+            //ApplicationUser Student = userManager.FindByName("student@mail.se");
+            //userManager.AddToRole(Student.Id, "Student");
+            //Student = userManager.FindByName("student@mail.se");
+
+            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "teacher@lexicon.se" && u.Email != "john@lexicon.se")))
             {
                 userManager.AddToRole(user.Id, "Student");
             }
 
             context.SaveChanges();
-
-            CourseClass[] course = new CourseClass[] {
-                new CourseClass
-                {
-                    Name = ".NET Höst",
-                    Description = "En superrolig kurs som passar alla mellan 10 - 100 år. I kursen ingår moduler som 'Databasdesign', 'AngularJS'.",
-                    StartTime = new DateTime(2015, 09, 11),
-                    EndTime = new DateTime(2015, 12, 11),
-                    Modules = new List<ModuleClass>
-                    {
-                        new ModuleClass
-                        {
-                            Name = "Bootstrap & CSS",
-                            Description = "Lär dig pynta din sida med lite basic bootstrap och css.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>
-                            {
-                                new ActivityClass
-                                {
-                                    Name = "Uppgift 1",
-                                    Description = "Det här är en beskrivning till Uppgift 1",
-                                    StartTime = new DateTime(2015, 10, 14),
-                                    EndTime = new DateTime(2015, 10, 14)
-                                },
-
-                                new ActivityClass
-                                {
-                                    Name = "Uppgift 2",
-                                    Description = "Det här är en beskrivning till Uppgift 3",
-                                    StartTime = new DateTime(2015, 10, 14),
-                                    EndTime = new DateTime(2015, 10, 14)
-                                },
-
-                                new ActivityClass
-                                {
-                                    Name = "Uppgift 3",
-                                    Description = "Det här är en beskrivning till Uppgift 3",
-                                    StartTime = new DateTime(2015, 10, 14),
-                                    EndTime = new DateTime(2015, 10, 14)
-                                },
-
-                                new ActivityClass
-                                {
-                                    Name = "Uppgift 4",
-                                    Description = "Det här är en beskrivning till Uppgift 4",
-                                    StartTime = new DateTime(2015, 10, 14),
-                                    EndTime = new DateTime(2015, 10, 14)
-                                },
-
-                                new ActivityClass
-                                {
-                                    Name = "Uppgift 5",
-                                    Description = "Det här är en beskrivning till Uppgift 5",
-                                    StartTime = new DateTime(2015, 10, 14),
-                                    EndTime = new DateTime(2015, 10, 14)
-                                }
-                            },
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "AngularJS",
-                            Description = "Grunderna för AngularJS.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "Databasdesign",
-                            Description = "Det är svårare än vad ni tror.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        }
-                    },
-                    AttendingStudents = new List<ApplicationUser>()
-                },
-
-
-                 new CourseClass
-                {
-                    Name = "Ny programmeringskurs",
-                    Description = "Vi lär dig allt om programmering.",
-                    StartTime = new DateTime(2019, 02, 06),
-                    EndTime = new DateTime(2019, 08, 23),
-                    Modules = new List<ModuleClass>
-                    {
-                        new ModuleClass
-                        {
-                            Name = "C#",
-                            Description = "Lär dig grunderna för C# programmering.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "JavaScript",
-                            Description = "Lär dig grunderna för utveckling med JavaScript.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "PHP",
-                            Description = "Lär dig PHP.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "Python",
-                            Description = "Lär dig grunderna för Python utveckling.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        }
-                    },
-                    AttendingStudents = new List<ApplicationUser>()
-                },
-
-
-                 new CourseClass
-                {
-                    Name = "Shoppingkurs distans",
-                    Description = "Handla fina saker online.",
-                    StartTime = new DateTime(2017, 02, 06),
-                    EndTime = new DateTime(2017, 09, 11),
-                    Modules = new List<ModuleClass>
-                    {
-                        new ModuleClass
-                        {
-                            Name = "Onlineshopping",
-                            Description = "Lär dig handla kläder, elektronik och annat kul ONLINE!",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        },
-
-                        new ModuleClass
-                        {
-                            Name = "Butikshopping",
-                            Description = "Lär dig gå och strosa runt på stan som en kung.",
-                            StartTime = new DateTime(2015, 10, 14),
-                            EndTime = new DateTime(2015, 11, 14),
-                            Activities = new List<ActivityClass>()
-                        }
-                    },
-                    AttendingStudents = new List<ApplicationUser>()
-                }
-            };
-
-            foreach (CourseClass g in course)
-            {
-                context.CourseClasses.Add(g);
-            }
-            context.SaveChanges();
         }
     }
-}
+};
