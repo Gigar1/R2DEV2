@@ -73,20 +73,19 @@
     </div>
 
     <div id="adminPanel" class="container-fluid">
-        <!--LÄGG TILL KONTROLL FÖR LÄRARE-->
         @if (User.IsInRole("Teacher"))
         {
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
-                    <li><a href="#NyKurs" data-toggle="tab">Ny Kurs</a></li>
+                    <li>@Html.ActionLink("Ny kurs", "Create", "Course")</li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Lägg till<span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#NyLärare" data-toggle="tab">Lärare</a></li>
+                            <li>@Html.ActionLink("Lärare", "Register", "Account")</li>
                             <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
                         </ul>
                     </li>
@@ -113,6 +112,7 @@
             <div class="tab-pane fade" id="NyKurs">
                 <p>
                     Här ska vi kunna skapa en kurs
+                    
                 </p>
                 <hr class="container-fluid" />
             </div>

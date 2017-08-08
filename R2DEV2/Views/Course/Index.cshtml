@@ -22,19 +22,6 @@
     }
 </style> 
 
-@if (User.IsInRole("Teacher"))
-{
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <p>
-                @Html.ActionLink("Skapa ny", "Create")
-            </p>
-        </div>
-    </div>
-}
-
-
-
 @foreach (var item in Model)
 {
     <div class="container-fluid">
@@ -66,7 +53,10 @@
                 @Html.ActionLink("Ansök", "CourseToggle", new { id = item.Id })
             }
         </div>
+
         
+
+        @*Deltagarlista*@
         <div class="col-sm-3 hidden-xs" id="deltagarlista">
             <h4>Deltagare: </h4>
             @foreach (var attendingStudent in item.AttendingStudents)
@@ -75,7 +65,19 @@
                 <br />
             }
         </div>
+
     </div>
     <hr class="container" />
 }
 
+
+@if (User.IsInRole("Teacher"))
+{
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <p>
+                @Html.ActionLink("Skapa ny", "Create")
+            </p>
+        </div>
+    </div>
+}
