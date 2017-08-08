@@ -58,6 +58,7 @@
                             @foreach(var activities in modules.Activities )
                             {
                                 @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)
+
                                 <br />
                             }
 
