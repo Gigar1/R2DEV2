@@ -24,6 +24,7 @@ namespace R2DEV2.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            //var currentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
             return View(db.CourseClasses.ToList());
         }
 
