@@ -121,7 +121,9 @@ namespace WebApplication23.Controllers
             ActivityClass activityClass = db.ActivityClasses.Find(id);
             db.ActivityClasses.Remove(activityClass);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            var courseId = db.ModuleClasses.Find(activityClass.ModuleClassId).CourseClassId;
+            //var courseid = x.CourseClassId;
+            return RedirectToAction("Details", "Course", new { id = courseId });
         }
 
         protected override void Dispose(bool disposing)
