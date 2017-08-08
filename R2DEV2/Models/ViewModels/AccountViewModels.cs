@@ -75,16 +75,16 @@ namespace R2DEV2.Models
         public string FullName { get { return FirstName + " " + LastName; } }
         public DateTime TimeOfRegistration { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "Lösenordet {0} måste åtminstonde vara {2} tecken långt.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Lösenord")]
-        public string Password { get; set; }
+        //[Required]
+        //[StringLength(100, ErrorMessage = "Lösenordet {0} måste åtminstonde vara {2} tecken långt.", MinimumLength = 6)]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Lösenord")]
+        //public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Repetera lösenordet")]
-        [Compare("Password", ErrorMessage = "Lösenorden matchade inte.")]
-        public string ConfirmPassword { get; set; }
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Repetera lösenordet")]
+        //[Compare("Password", ErrorMessage = "Lösenorden matchade inte.")]
+        //public string ConfirmPassword { get; set; }
     }
 
     //public class RegisterStudentViewModel
