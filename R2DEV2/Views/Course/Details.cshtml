@@ -30,6 +30,7 @@
     <div class="col-md-9">
         <h2>
             @Html.DisplayFor(model => model.Name)
+           
             <br class="hidden-lg" />
             <small>
                 @Html.DisplayFor(model => model.StartTime) till
@@ -44,37 +45,69 @@
                 {
                     <div class="panel-heading">
                         <h4 class="panel-title">
+                           
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
                                 @modules.Id<span>. </span>@modules.Name
+                                
+                               
                             </a>
                         </h4>
-                    </div>
-                    <div id="@modules.Id" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            @modules.Description
 
+                    </div>
+
+                   
+                    @*@Html.ActionLink("Tabort",  "ModuleClasses", "Delete", new { id = modules.Id })<span>|</span>
+
+                    @Html.ActionLink(modules.Name, "Details", new { id = modules.Id })*@
+
+                    @Html.ActionLink("Tabort", "Delete", "ModuleClasses", new {id = modules.Id  }, null )   <span>|</span>
+                    @Html.ActionLink("Radegera", "Edit", "ModuleClasses", new { id = modules.Id }, null)
+                    <br/>
+
+                    @Html.ActionLink("Ny Activity", "Create", "ActivityClasses")
+
+
+
+                    @*<br class="hidden-lg" />
+                    <small>
+                        @Html.DisplayFor(module => modules.Name) 
+                        @Html.DisplayFor(activityclass => activityclass.Name)
+                    </small>*@
+
+
+
+
+
+
+
+                        <div id="@modules.Id" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @modules.Description
+
+                            </div>
                         </div>
-                    </div>
-                }
+                        }
 
-                @if (User.IsInRole("Teacher"))
+                        @if (User.IsInRole("Teacher"))
                 {
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="NyModul" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <p>
-                                Här kan vi skapa en ny modul.
-                            </p>
-                        </div>
-                    </div>
-                }
-            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="NyModul" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p>
+                                        @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
+
+
+                                    </p>
+                                </div>
+                            </div>
+                        }
+</div>,
         </div>
     </div>
 
