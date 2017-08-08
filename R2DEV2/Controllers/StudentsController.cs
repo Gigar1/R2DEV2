@@ -6,130 +6,115 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-//using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
 {
-    public class ModulesController : Controller
+    public class StudentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        #region GET: Modules
+        // GET: Students
         public ActionResult Index()
         {
-            return View(db.Modules.ToList());
+            return View(db.Students.ToList());
         }
-        #endregion
 
-
-        #region GET: Modules Details
+        // GET: Students/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Student student = db.Students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(student);
         }
-        #endregion
 
-
-        #region GET: Modules Create
-        public ActionResult Create(int? id)
+        // GET: Students/Create
+        public ActionResult Create()
         {
-            Course course = db.Courses.Find(id);
-            ViewBag.CourseId = course.CourseId;
             return View();
         }
-        #endregion
 
-        #region POST: Modules Create
+        // POST: Students/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ModuleId,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                Course course = db.Courses.Find(ViewBag.CourseId=module.ModuleId);
-                course.Modules.Add(module);
-                db.Modules.Add(module);
+                db.Students.Add(student);
                 db.SaveChanges();
-                return RedirectToAction("Courses");
+                return RedirectToAction("Index");
             }
 
-            return View(module);
+            return View(student);
         }
-        #endregion
-        
 
-        #region GET: Modules Edit
+        // GET: Students/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Student student = db.Students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(student);
         }
-        #endregion
 
-        #region POST: Modules Edit
+        // POST: Students/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ModuleId,ModuleName,ModuleDescription")] Module module)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(module).State = EntityState.Modified;
+                db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(module);
+            return View(student);
         }
-        #endregion
 
-
-        #region GET: Modules Delete
+        // GET: Students/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Student student = db.Students.Find(id);
+            if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(student);
         }
-        #endregion
 
-        #region POST: Modules Delete
+        // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Module module = db.Modules.Find(id);
-            db.Modules.Remove(module);
+            Student student = db.Students.Find(id);
+            db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        #endregion
 
-
-        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -138,6 +123,5 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
-        #endregion
     }
 }

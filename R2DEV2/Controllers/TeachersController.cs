@@ -6,137 +6,115 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-////using R2DEV2.DAL;
 using R2DEV2.Models;
 
 namespace R2DEV2.Controllers
 {
-    public class ActivitiesController : Controller
+    public class TeachersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        #region GET: Activities
+        // GET: Teachers
         public ActionResult Index()
         {
-            return View(db.Activities.ToList());
+            return View(db.Teachers.ToList());
         }
-        #endregion
 
-
-        #region GET: Activities Details
+        // GET: Teachers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            Teacher teacher = db.Teachers.Find(id);
+            if (teacher == null)
             {
                 return HttpNotFound();
             }
-            return View(activity);
+            return View(teacher);
         }
-        #endregion
 
-
-        //#region GET: Activities Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-        //#endregion
-
-        #region GET: Activities Create
-        public ActionResult Create(int moduleId)
+        // GET: Teachers/Create
+        public ActionResult Create()
         {
-            Module module = db.Modules.Find(moduleId = 2);
-            ViewBag.ModuleId = module.ModuleId;
             return View();
         }
-        #endregion
 
-        #region POST: Activities Create
+        // POST: Teachers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
-                db.Activities.Add(activity);
+                db.Teachers.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(activity);
+            return View(teacher);
         }
-        #endregion
 
-
-        #region GET: Activities Edit
+        // GET: Teachers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            Teacher teacher = db.Teachers.Find(id);
+            if (teacher == null)
             {
                 return HttpNotFound();
             }
-            return View(activity);
+            return View(teacher);
         }
-        #endregion
 
-        #region POST: Activities Edit
-        // POST: Activities/Edit/5
+        // POST: Teachers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ActivityId,ActivityName,ActivityDescription,ActivityStartTime,ActivityDuration")] Activity activity)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(activity).State = EntityState.Modified;
+                db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(activity);
+            return View(teacher);
         }
-        #endregion
 
-
-        #region GET: Activities Delete
-        // GET: Activities/Delete/5
+        // GET: Teachers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            Teacher teacher = db.Teachers.Find(id);
+            if (teacher == null)
             {
                 return HttpNotFound();
             }
-            return View(activity);
+            return View(teacher);
         }
-        #endregion
 
-        #region POST: Activities Delete
+        // POST: Teachers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Activity activity = db.Activities.Find(id);
-            db.Activities.Remove(activity);
+            Teacher teacher = db.Teachers.Find(id);
+            db.Teachers.Remove(teacher);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        #endregion
 
-
-        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -145,6 +123,5 @@ namespace R2DEV2.Controllers
             }
             base.Dispose(disposing);
         }
-        #endregion
     }
 }

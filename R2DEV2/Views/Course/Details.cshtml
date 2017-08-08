@@ -22,14 +22,13 @@
     .panel-default > .panel-heading {
         background-color: #e7e7e7;
     }
-</style> 
-
-@*test*@
+</style>
 
 <div class="container-fluid">
     <div class="col-md-9">
         <h2>
             @Html.DisplayFor(model => model.Name)
+
             <br class="hidden-lg" />
             <small>
                 @Html.DisplayFor(model => model.StartTime) till
@@ -40,19 +39,33 @@
 
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
+
                 @foreach (var modules in Model.Modules)
                 {
                     <div class="panel-heading">
                         <h4 class="panel-title">
+
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @modules.Id<span>. </span>@modules.Name
+                                @modules.Id<span>. </span>
+                                @modules.Name
+                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> <span>|</span>
+                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                             </a>
                         </h4>
                     </div>
+
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @modules.Description
+                            @foreach(var activities in modules.Activities )
+                            {
+                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)
+                                <br />
+                            }
 
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                @Html.ActionLink("Ny Activity", "Create", "ActivityClasses")
+                            }
                         </div>
                     </div>
                 }
@@ -68,9 +81,9 @@
                     </div>
                     <div id="NyModul" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <p>
-                                Här kan vi skapa en ny modul.
-                            </p>
+                             <p>
+                                 @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
+                             </p>
                         </div>
                     </div>
                 }
