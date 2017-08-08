@@ -43,60 +43,55 @@
                 @foreach (var modules in Model.Modules)
                 {
                     <div class="panel-heading">
-                        <h4 class="panel-title">
-
+                        <h4 class="panel-title" style="display:inline">
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
                                 @modules.Id<span>. </span>
                                 @modules.Name
-                                @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
-                                
-                                @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                             </a>
                         </h4>
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <h4 class="panel-title" style="display: inline; float: right;">
+                                    <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> @Html.ActionLink("Redigera", "Edit", "ModuleClasses", new { id = modules.Id }, null) <span>|</span>
+                                    @Html.ActionLink("Ta Bort", "Delete", "ModuleClasses", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+                                </h4>
+                            }
                     </div>
-                    @Html.ActionLink("Skapa Activity", "Create", "ActivityClasses")
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            @foreach (var activities in modules.Activities)
+                            @foreach(var activities in modules.Activities )
                             {
-                                
-                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)  <span>        |</span>
-
-                                @Html.ActionLink("Redigera", "Edit", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i><span>|</span>
-                                @Html.ActionLink("Ta Bort", "Delete", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
-
-
-
+                                @Html.ActionLink(@activities.Name, "Details", "ActivityClasses", new { id = activities.Id }, null)
                                 <br />
                             }
-                           
-                          
 
-                            </div>
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                @Html.ActionLink("Ny Activity", "Create", "ActivityClasses")
+                            }
                         </div>
-                        }
+                    </div>
+                }
 
                 @if (User.IsInRole("Teacher"))
                 {
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="NyModul" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <p>
-                                        @Html.ActionLink("Ny Module", "Create", "ModuleClasses")
-
-
-                                    </p>
-                                </div>
-                            </div>
-                        }
-</div>,
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="NyModul" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                             <p>
+                                 @Html.ActionLink("Ny modul", "Create", "ModuleClasses")
+                             </p>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 
