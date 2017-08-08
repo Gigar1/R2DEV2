@@ -43,27 +43,6 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        //Student
-        public ActionResult CourseToggle(int id)
-        {
-            CourseClass CurrentClass = db.CourseClasses.Where(g => g.Id == id).FirstOrDefault();
-            ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-            
-            //Remove Student
-            if (CurrentClass.AttendingStudents.Contains(CurrentUser))
-            {
-                CurrentClass.AttendingStudents.Remove(CurrentUser);
-                db.SaveChanges();
-            }//Add Student
-            else
-            {
-                CurrentClass.AttendingStudents.Add(CurrentUser);
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-
         // GET: Course/Create
         [Authorize(Roles = "Teacher")]
         public ActionResult Create()
