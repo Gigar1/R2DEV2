@@ -41,6 +41,7 @@
 
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
+
                 @foreach (var modules in Model.Modules)
                 {
                     <div class="panel-heading">
@@ -56,9 +57,7 @@
                     </div>
 
                    
-                    @*@Html.ActionLink("Tabort",  "ModuleClasses", "Delete", new { id = modules.Id })<span>|</span>
-
-                    @Html.ActionLink(modules.Name, "Details", new { id = modules.Id })*@
+                   
 
                     @Html.ActionLink("Tabort", "Delete", "ModuleClasses", new {id = modules.Id  }, null )   <span>|</span>
                     @Html.ActionLink("Radegera", "Edit", "ModuleClasses", new { id = modules.Id }, null)
@@ -68,11 +67,7 @@
 
 
 
-                    @*<br class="hidden-lg" />
-                    <small>
-                        @Html.DisplayFor(module => modules.Name) 
-                        @Html.DisplayFor(activityclass => activityclass.Name)
-                    </small>*@
+                
 
 
 
