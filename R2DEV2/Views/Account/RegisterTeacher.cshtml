@@ -1,14 +1,14 @@
 ﻿@model R2DEV2.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "RegisterTeacher";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("RegisterTeacher", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Lägg till en ny student</h4>
+    <h4>Lägg till en ny lärare</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
