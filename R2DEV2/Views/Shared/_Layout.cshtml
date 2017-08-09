@@ -54,6 +54,10 @@
             background-color: #e7e7e7;
             min-height: 8em;
         }
+
+        .panel {
+            margin-bottom: 0px;
+        }
     </style>
 
     <div class="navbar-default navbar-fixed-top">
@@ -85,7 +89,7 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Lärare", "Register", "Account")</li>
+                            <li><a href="#NyLärare" data-toggle="tab">Lärare</a></li>
                             <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
                         </ul>
                     </li>
@@ -95,28 +99,7 @@
         }
     </div>
     
-    <div id="content" class="container">
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade active in" id="home"></div>
-
-            <div class="tab-pane fade" id="NyLärare">
-                Skapa ny Lärare
-                <hr class="container-fluid" />
-            </div>
-
-            <div class="tab-pane fade" id="NyElev">
-                Skapa ny Elev
-                <hr class="container-fluid" />
-            </div>
-
-            <div class="tab-pane fade" id="NyKurs">
-                <p>
-                    Här ska vi kunna skapa en kurs
-                    
-                </p>
-                <hr class="container-fluid" />
-            </div>
-        </div>
+    <div class="container" id="content">
         @RenderBody()
     </div>
 
