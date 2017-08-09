@@ -61,20 +61,24 @@
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
+
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
+                            }
+                            <br/>
+                            <br />
+
                             @foreach(var activities in modules.Activities )
                             {
                                 
                           @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null) <span>|</span>
 
-                          @*@Html.ActionLink("Redigera", "Edit", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen" ></i><span>|</span>
-                          @Html.ActionLink("Ta Bort", "Delete", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>*@
+                          @Html.ActionLink("Redigera", "Edit", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen" ></i><span>|</span>
+                          @Html.ActionLink("Ta Bort", "Delete", "ActivityClasses", new { id = activities.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                                 <br />
                             }
 
-                            @if (User.IsInRole("Teacher"))
-                            {
-                                @Html.ActionLink("Ny aktivitet","Create", "Activity", new {id = modules.Id }, null)
-                            }
                         </div>
                     </div>
                 }
@@ -104,12 +108,15 @@
 
     <div class="col-md-3">
         <h4>Deltagare: </h4>
+        @Html.ActionLink("Ny elev", "Register", "Account", new { id = Model.Id }, null)
+        <br/>
+        <br />
         @foreach (var attendingStudent in Model.AttendingStudents)
         {
             @attendingStudent.FullName
             <br />
         }
-        @Html.ActionLink("Ny elev", "Register", "Account",new { id = Model.Id }, null)
+       
     </div>
 
     <div class="col-md-9">
