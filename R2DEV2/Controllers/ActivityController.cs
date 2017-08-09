@@ -63,7 +63,7 @@ namespace WebApplication23.Controllers
 
             //ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name", activityClass.ModuleClassId);
             //ViewBag.ActivityClassId = new SelectList(db.ActivityClasses, "Id", "Name", activityClass.ModuleClassId);
-            return View(activityClass);
+            return View(id);
         }
 
         // GET: ActivityClasses/Edit/5
@@ -93,7 +93,7 @@ namespace WebApplication23.Controllers
             {
                 db.Entry(activityClass).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Course");
             }
             ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name", activityClass.ModuleClassId);
             return View(activityClass);

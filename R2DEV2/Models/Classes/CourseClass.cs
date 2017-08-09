@@ -14,11 +14,11 @@ namespace R2DEV2.Models.Classes
         public string Name { get; set; }
         [Display(Name = "Kursinfo")]
         public string Description { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MMM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Startdatum")]
         public DateTime StartTime { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MMM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Slutdatum")]
         public DateTime EndTime { get; set; }

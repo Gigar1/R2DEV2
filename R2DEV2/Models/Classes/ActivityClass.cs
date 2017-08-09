@@ -21,6 +21,7 @@ namespace R2DEV2.Models.Classes
         [DataType(DataType.DateTime)]
         public DateTime EndTime { get; set; }
         public int ModuleClassId { get; set; }
+        //public int CourseClassId { get; set; }
 
         public virtual ModuleClass Module { get; set; }
     }
