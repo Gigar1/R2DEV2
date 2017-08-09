@@ -35,6 +35,11 @@ namespace R2DEV2.Controllers
                 return RedirectToAction("Details", "Course", new { id = userId });
             }
         }
+        //[Authorize]
+        //public ActionResult Kalender()
+        //{
+        //    return View();
+        //}
 
         // GET: Course/Details/5
         public ActionResult Details(int? id)
