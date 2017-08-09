@@ -46,11 +46,8 @@
     </dl>
 </div>
 
-
-
-
-
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Ta bort", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Details","Course"@*, new { id = Model.ModuleClassId}, null*@)
 </p>
