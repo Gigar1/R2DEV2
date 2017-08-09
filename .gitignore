@@ -260,3 +260,17 @@ paket-files/
 __pycache__/
 *.pyc
 /R2DEV2/Migrations
+/R2DEV2/Content/bootstrap.css.map
+/R2DEV2/Content/bootstrap-theme.min.css
+/R2DEV2/Content/bootstrap-theme.css.map
+/R2DEV2/Content/bootstrap-theme.css
+/R2DEV2/Content/bootstrap-datetimepicker.min.css
+/R2DEV2/Content/bootstrap-datetimepicker.css
+/R2DEV2/Scripts/npm.js
+/R2DEV2/Scripts/moment.min.js
+/R2DEV2/Scripts/moment.js
+/R2DEV2/Scripts/moment-with-locales.min.js
+/R2DEV2/Scripts/moment-with-locales.js
+/R2DEV2/Scripts/DatePickerReady.js
+/R2DEV2/Scripts/bootstrap-datetimepicker.min.js
+/R2DEV2/Scripts/bootstrap-datetimepicker.js
