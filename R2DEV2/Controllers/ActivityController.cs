@@ -74,6 +74,7 @@ namespace WebApplication23.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ActivityClass activityClass = db.ActivityClasses.Find(id);
+
             if (activityClass == null)
             {
                 return HttpNotFound();
@@ -93,7 +94,8 @@ namespace WebApplication23.Controllers
             {
                 db.Entry(activityClass).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var courseId = db.ModuleClasses.Find(activityClass.ModuleClassId).CourseClassId;
+                return RedirectToAction("Details", "Course", new { id = courseId });
             }
             ViewBag.ModuleClassId = new SelectList(db.ModuleClasses, "Id", "Name", activityClass.ModuleClassId);
             return View(activityClass);
