@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using R2DEV2.Models;
 using R2DEV2.Models.Classes;
 
-namespace WebApplication23.Controllers
+namespace R2DEV2.Controllers
 {
     public class ActivityController : Controller
     {
