@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Aktivitetsinformation</h2>
 
 <div>
     <h4>ActivityClass</h4>
@@ -52,5 +52,5 @@
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Details","Course"@*, new { id = Model.ModuleClassId}, null*@)
+    @Html.ActionLink("Back to List", "Details","Course", new { id = Model.ModuleClassId}, null)
 </p>

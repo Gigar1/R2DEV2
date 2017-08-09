@@ -11,7 +11,7 @@ using R2DEV2.Models.Classes;
 
 namespace WebApplication23.Controllers
 {
-    public class ActivityClassesController : Controller
+    public class ActivityController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
