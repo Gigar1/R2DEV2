@@ -20,20 +20,46 @@
         font-weight: bolder;
         text-decoration: none;
     }
-</style> 
+</style>
+
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="home"></div>
+
+    <div class="tab-pane fade" id="NyLärare">
+        Skapa ny Lärare
+        <hr class="container-fluid" />
+    </div>
+
+    <div class="tab-pane fade" id="NyElev">
+        Skapa ny Elev
+        <hr class="container-fluid" />
+    </div>
+
+    <div class="tab-pane fade" id="NyKurs">
+        <div class="container-fluid">
+            Skapa ny kurs
+        </div>
+        <hr class="container-fluid" />
+    </div>
+</div>
 
 @foreach (var item in Model)
 {
     <div class="container-fluid">
-        <div class="col-sm-9 col-xs-12">
-            <h2>
+        <div class="col-md-9">
+            <h2 style="display: inline-block;">
                 @Html.ActionLink(item.Name, "Details", new { id = item.Id })
-                <br class="hidden-lg"/>
-                <small>
+            </h2>
+            <h2 class="hidden-xs" style="float:right; display: inline-block;">
+                <small style="text-align:right;">
                     @Html.DisplayFor(modelItem => item.StartTime) till
                     @Html.DisplayFor(modelItem => item.EndTime)
                 </small>
             </h2>
+        </div>
+        
+        <div class="col-sm-9 col-xs-12">
+            
 
             @Html.DisplayFor(modelItem => item.Description)
             <br />
@@ -47,16 +73,21 @@
         </div>
 
         <div class="col-sm-3 hidden-xs" id="deltagarlista">
-            <h4>Deltagare: </h4>
-            @foreach (var attendingStudent in item.AttendingStudents)
-            {
-                @attendingStudent.FullName
-                <br />
-            }
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4 class="panel-title">Deltagare:</h4></div>
+                <div class="panel-body">
+                    @foreach (var attendingStudent in item.AttendingStudents)
+                    {
+                        @attendingStudent.FullName
+                        <br />
+                    }
+                    @Html.ActionLink("Ny elev", "Register", "Account", new { id = item.Id }, null)
+                </div>
+            </div>
         </div>
 
     </div>
-    <hr class="container" />
+    <hr class="container-fluid" />
 }
 
 

@@ -6,7 +6,7 @@
 
 <style>
     h2, h4 {
-        margin-top: 15px;
+        margin-top: 0px;
         margin-bottom: 10px;
     }
 
@@ -24,21 +24,19 @@
     }
 </style>
 
-@Html.ActionLink("Kalender","Kalender","Course")
-
 <div class="container-fluid">
     <div class="col-md-9">
-        <h2>
+        <h2 style="display: inline-block;">
             @Html.DisplayFor(model => model.Name)
-
-            <br class="hidden-lg" />
-            <small>
+        </h2>
+        <h2 class="hidden-xs" style="float:right; display: inline-block;">
+            <small style="text-align:right;">
                 @Html.DisplayFor(model => model.StartTime) till
                 @Html.DisplayFor(model => model.EndTime)
             </small>
         </h2>
-
-
+    </div>
+    <div class="col-md-9">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
 
@@ -63,61 +61,45 @@
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
+                            @foreach(var activities in modules.Activities )
+                            {
+                                @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null)
+                                <br />
+                            }
 
                             @if (User.IsInRole("Teacher"))
                             {
                                 @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
                             }
-                            <br/>
-                            <br />
-
-                            @foreach(var activities in modules.Activities )
-                            {
-                                
-                          @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null) <span>|</span>
-
-                         
-                                <br />
-                            }
-
                         </div>
                     </div>
                 }
 
                 @if (User.IsInRole("Teacher"))
                 {
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="NyModul" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <p>
-                                        @Html.ActionLink("Ny modul", "Create", "ModuleClasses", new { id = Model.Id },null)
-
-
-                                    </p>
-                                </div>
-                            </div>
-                        }
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i>
+                        @Html.ActionLink("Skapa ny modul", "Create", "Module", new { id = Model.Id }, null)
+                    </h4>
+                </div>
+                }
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <h4>Deltagare: </h4>
-        @Html.ActionLink("Ny elev", "Register", "Account", new { id = Model.Id }, null)
-        <br/>
-        <br />
-        @foreach (var attendingStudent in Model.AttendingStudents)
-        {
-            @attendingStudent.FullName
-            <br />
-        }
-       
+        <div class="panel panel-info">
+            <div class="panel-heading"><h4 class="panel-title">Deltagare:</h4></div>
+            <div class="panel-body">
+                @foreach (var attendingStudent in Model.AttendingStudents)
+                {
+                    @attendingStudent.FullName
+                    <br />
+                }
+                @Html.ActionLink("Ny elev", "Register", "Account", new { id = Model.Id }, null)
+            </div>
+        </div>
     </div>
 
     <div class="col-md-9">
