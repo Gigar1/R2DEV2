@@ -8,9 +8,15 @@
 
 <div>
     <h4>ActivityClass</h4>
+
+    @Html.ActionLink("Redigera", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
+    <span>|</span>
+    @Html.ActionLink("Ta Bort", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+
     <hr />
     <dl class="dl-horizontal">
-      
+
+       
         <dt>
             @Html.DisplayNameFor(model => model.Module.Name)
         </dt>
