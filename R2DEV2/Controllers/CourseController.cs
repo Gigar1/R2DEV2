@@ -7,20 +7,41 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using R2DEV2.Models;
+using R2DEV2.Models.Classes;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace R2DEV2.Controllers
 {
-    public class CourseClassesController : Controller
+    public class CourseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: CourseClasses
+        public object UserUtils { get; private set; }
+
+        // GET: Course
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.CourseClasses.ToList());
+            //var currentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            if (User.IsInRole("Teacher"))
+            {
+                return View(db.CourseClasses.ToList());
+            }
+            
+            else
+            {
+                var userId = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().CourseClassId;
+                return RedirectToAction("Details", "Course", new { id = userId });
+            }
         }
+        //[Authorize]
+        //public ActionResult Kalender()
+        //{
+        //    return View();
+        //}
 
-        // GET: CourseClasses/Details/5
+        // GET: Course/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +56,20 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        // GET: CourseClasses/Create
+        // GET: Course/Create
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CourseClasses/Create
+        // POST: Course/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +81,8 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        // GET: CourseClasses/Edit/5
+        // GET: Course/Edit/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,12 +97,13 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        // POST: CourseClasses/Edit/5
+        // POST: Course/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] CourseClass courseClass)
+        [Authorize(Roles = "Teacher")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartTime,EndTime")] CourseClass courseClass)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +114,8 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        // GET: CourseClasses/Delete/5
+        // GET: Course/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,8 +130,9 @@ namespace R2DEV2.Controllers
             return View(courseClass);
         }
 
-        // POST: CourseClasses/Delete/5
+        // POST: Course/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Teacher")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

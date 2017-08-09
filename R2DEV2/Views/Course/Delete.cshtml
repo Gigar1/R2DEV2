@@ -1,13 +1,12 @@
-﻿@model R2DEV2.Models.CourseClass
+﻿@model R2DEV2.Models.Classes.CourseClass
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
-
+<h3>Är du säker på att du vill ta bort <small>'@Html.DisplayFor(model => model.Name)'</small>?</h3>
+@*//TEST*@
 <div>
-    <h4>CourseClass</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,11 +26,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Duration)
+            @Html.DisplayNameFor(model => model.EndTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Duration)
+            @Html.DisplayFor(model => model.EndTime)
         </dd>
 
         <dt>
@@ -43,8 +42,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Ta Bort" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka", "Details", new { id = Model.Id })
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

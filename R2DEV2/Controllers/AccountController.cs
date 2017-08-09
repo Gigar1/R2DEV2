@@ -18,15 +18,18 @@ namespace R2DEV2.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
 
         public ApplicationSignInManager SignInManager
         {
@@ -34,11 +37,12 @@ namespace R2DEV2.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
+
 
         public ApplicationUserManager UserManager
         {
@@ -52,17 +56,17 @@ namespace R2DEV2.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+
+        #region GET: Account Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Account/Login
+        #region POST: Account Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -90,9 +94,10 @@ namespace R2DEV2.Controllers
                     return View(model);
             }
         }
+        #endregion
 
-        //
-        // GET: /Account/VerifyCode
+
+        #region GET: Account VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -103,9 +108,9 @@ namespace R2DEV2.Controllers
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
+        #endregion
 
-        //
-        // POST: /Account/VerifyCode
+        #region POST: Account VerifyCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -120,7 +125,7 @@ namespace R2DEV2.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -133,37 +138,36 @@ namespace R2DEV2.Controllers
                     return View(model);
             }
         }
+        #endregion
 
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
+
+        #region GET: Account Register
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
+        public ActionResult Register(int id)
         {
+            ViewBag.CourseClassId = id;
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Account/Register
+        #region POST: Account Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, int id)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = id};
+                var result = await UserManager.CreateAsync(user, "Password1!");
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                   await UserManager.AddToRoleAsync(user.Id, "Student");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Details", "Course", new { id = id });
                 }
                 AddErrors(result);
             }
@@ -171,9 +175,44 @@ namespace R2DEV2.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Account/ConfirmEmail
+        #region GET: Account RegisterTeacher
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
+        public ActionResult RegisterTeacher()
+        {
+            return View();
+        }
+        #endregion
+
+        #region POST: Account RegisterTeacher
+        [HttpPost]
+        [Authorize(Roles = "Teacher")]
+        //[AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterTeacher(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = 0};
+                var result = await UserManager.CreateAsync(user, "Password1!");
+
+                if (result.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(user.Id, "Teacher");
+
+                    return RedirectToAction("Index", "Course");
+                }
+                AddErrors(result);
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+        #endregion
+
+        //Not used
+        #region GET: Account ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -184,17 +223,18 @@ namespace R2DEV2.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
+        #endregion
 
-        //
-        // GET: /Account/ForgotPassword
+        //Not used
+        #region GET: Account ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Account/ForgotPassword
+        #region POST: Account ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -220,25 +260,27 @@ namespace R2DEV2.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Account/ForgotPasswordConfirmation
+        //Not used
+        #region GET: Account ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
+        #endregion
 
-        //
-        // GET: /Account/ResetPassword
+
+        #region GET: Account ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
+        #endregion
 
-        //
-        // POST: /Account/ResetPassword
+        #region POST: Account ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -262,17 +304,18 @@ namespace R2DEV2.Controllers
             AddErrors(result);
             return View();
         }
+        #endregion
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
+        //Not used
+        #region GET: Account ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Account/ExternalLogin
+        #region POST: Account ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -281,9 +324,10 @@ namespace R2DEV2.Controllers
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
+        #endregion
 
-        //
-        // GET: /Account/SendCode
+        //Not used
+        #region GET: Account SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -296,9 +340,9 @@ namespace R2DEV2.Controllers
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
+        #endregion
 
-        //
-        // POST: /Account/SendCode
+        #region POST: Account SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -316,9 +360,10 @@ namespace R2DEV2.Controllers
             }
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
+        #endregion
 
-        //
-        // GET: /Account/ExternalLoginCallback
+        //Not used
+        #region GET: Account ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -346,9 +391,9 @@ namespace R2DEV2.Controllers
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
+        #endregion
 
-        //
-        // POST: /Account/ExternalLoginConfirmation
+        #region POST: Account ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -384,25 +429,30 @@ namespace R2DEV2.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Account/LogOff
+
+        #region POST: Account LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Course");
         }
+        #endregion
 
-        //
-        // GET: /Account/ExternalLoginFailure
+
+        #region GET: Account ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
         }
+        #endregion
 
+
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -422,6 +472,8 @@ namespace R2DEV2.Controllers
 
             base.Dispose(disposing);
         }
+        #endregion
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -449,7 +501,7 @@ namespace R2DEV2.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Course");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

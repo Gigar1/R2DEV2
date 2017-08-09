@@ -3,30 +3,189 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - R2DEV2</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
+
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
+    <style>
+        html {
+            background-color: #e7e7e7;
+        }
+
+        body {
+            padding-bottom: 0px;
+        }
+
+        #content {
+            min-height: 45em;
+            background-color: white;
+        }
+
+        #access {
+            font-size: 30px;
+            color: white;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            font-weight: bolder;
+        }
+
+        #adminPanel {
+            background-color: #e7e7e7;
+            margin-top: -5px;
+            margin-bottom: 21px;
+            min-height: 43px;
+        }
+
+        .navbar-brand {
+            background-color: rgb(214, 0, 0);
+            color: white;
+            font-weight: bolder;
+            font-size: 28px;
+        }
+
+        ul {
+            margin-top: 2px;
+        }
+
+        footer {
+            background-color: #e7e7e7;
+            min-height: 8em;
+        }
+
+        .panel {
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <div class="navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Lexicon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("LEXICON", "Index", "Course", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @Html.Partial("_LoginPartial")
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - R2DEV2</p>
-        </footer>
+
+    <div id="adminPanel" class="container-fluid">
+        @if (User.IsInRole("Teacher"))
+        {
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
+                    <li><a href="#NyKurs" data-toggle="tab">Ny Kurs</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Lägg till<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#NyLärare"  data-toggle="tab">Lärare</a></li>
+                            <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
+                        </ul>
+                    </li>
+
+            
+
+                    <li class="active" href="" data-toggle="tab" aria-expanded="true"><a>Sök</a></li>
+                </ul>
+            </div>
+        }
     </div>
+    <style>
+        .search-form .form-group {
+            float: right !important;
+            transition: all 0.35s, border-radius 0s;
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+        }
+
+            .search-form .form-group input.form-control {
+                padding-right: 20px;
+                border: 0 none;
+                background: transparent;
+                box-shadow: none;
+                display: block;
+            }
+
+                .search-form .form-group input.form-control::-webkit-input-placeholder {
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control:-moz-placeholder {
+                    /* Firefox 18- */
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control::-moz-placeholder {
+                    /* Firefox 19+ */
+                    display: none;
+                }
+
+                .search-form .form-group input.form-control:-ms-input-placeholder {
+                    display: none;
+                }
+
+            .search-form .form-group:hover,
+            .search-form .form-group.hover {
+                width: 100%;
+                border-radius: 4px 25px 25px 4px;
+            }
+
+            .search-form .form-group span.form-control-feedback {
+                position: absolute;
+                top: -1px;
+                right: -2px;
+                z-index: 2;
+                display: block;
+                width: 34px;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                color: #3596e0;
+                left: initial;
+                font-size: 14px;
+            }
+    </style>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <form action="" class="search-form">
+                <div class="form-group has-feedback">
+                    <label for="search" class="sr-only">Search</label>
+                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container" id="content">
+        @RenderBody()
+    </div>
+
+   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - R2DEV2</p>
+        </div>
+    </footer>
 </body>
 </html>
