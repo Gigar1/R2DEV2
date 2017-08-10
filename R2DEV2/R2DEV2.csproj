@@ -200,9 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708101126555_gewhgewf2.cs" />
-    <Compile Include="Migrations\201708101126555_gewhgewf2.Designer.cs">
-      <DependentUpon>201708101126555_gewhgewf2.cs</DependentUpon>
+    <Compile Include="Migrations\201708101327240_43.cs" />
+    <Compile Include="Migrations\201708101327240_43.Designer.cs">
+      <DependentUpon>201708101327240_43.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
@@ -303,8 +303,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708101126555_gewhgewf2.resx">
-      <DependentUpon>201708101126555_gewhgewf2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708101327240_43.resx">
+      <DependentUpon>201708101327240_43.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

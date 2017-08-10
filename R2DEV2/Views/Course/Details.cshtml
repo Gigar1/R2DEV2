@@ -4,17 +4,21 @@
     ViewBag.Title = "Kurs";
 }
 
-
-
 <style>
     h2, h4 {
         margin-top: 0px;
         margin-bottom: 10px;
     }
 
+    h5 {
+        font-weight: bold;
+        margin-top:0px;
+        margin-bottom: 4px;
+    }
+
     hr {
-        margin-top: 3px;
-        margin-bottom: 3px;
+        margin-top: 1em;
+        margin-bottom: 1em;
     }
 
     .panel-title {
@@ -26,6 +30,14 @@
         background-color: #e7e7e7;
     }
 
+    #btnAddStudent {
+        font-size: 18px;
+    }
+
+    #btnAddStudent:hover{
+        text-decoration: none;
+        color: forestgreen;
+    }
 </style>
 
 
@@ -60,26 +72,35 @@
                             @if (User.IsInRole("Teacher"))
                             {
                                 <h4 class="panel-title" style="display: inline; float: right;">
-                                    <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
-                                    @Html.ActionLink("Redigera", "Edit", "Module", new { id = modules.Id }, null) <span>|</span>
-                                    @Html.ActionLink("Ta Bort", "Delete", "Module", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+                                    <small>
+                                        @Html.ActionLink("Redigera", "Edit", "Module", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
+                                        &nbsp;
+                                        @Html.ActionLink("Ta Bort", "Delete", "Module", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+                                    </small>
                                 </h4>
                             }
                     </div>
 
-                    <div id="@modules.Id" class="panel-collapse collapse in">
+                    <div id="@modules.Id" class="panel-collapse collapse collapse">
                         <div class="panel-body">
+                            <h5>Information: </h5>
                             @modules.Description
                             <hr class="container-fluid" />
+                            <h5 style="display: inline;">Aktiviteter: </h5>
+                            @if (User.IsInRole("Teacher"))
+                            {
+                                <h4 class="panel-title" style="display: inline; float: right;">
+                                    <small>
+                                        @Html.ActionLink("Ny Aktivitet", "Create", "Activity", new { id = modules.Id }, null)
+                                        <i class="glyphicon glyphicon-plus" style="color:forestgreen"></i>
+                                    </small>
+                                </h4>
+                            }
+                            <br />
                             @foreach(var activities in modules.Activities )
                             {
                                 @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null)
                                 <br />
-                            }
-
-                            @if (User.IsInRole("Teacher"))
-                            {
-                                @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
                             }
                         </div>
                     </div>
@@ -102,14 +123,23 @@
 
     <div class="col-md-3">
         <div class="panel panel-info">
-            <div class="panel-heading"><h4 class="panel-title">Deltagare:</h4></div>
+            <div class="panel-heading">
+                <h4 class="panel-title" style="display:inline">
+                    Deltagare:
+                </h4>
+                @if (User.IsInRole("Teacher"))
+                {
+                    <h4 class="panel-title" style="display: inline; float: right;">
+                        <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("Register", "Account", new { id = Model.Id })" ></a>
+                     </h4>
+                }
+            </div>
             <div class="panel-body">
                 @foreach (var attendingStudent in Model.AttendingStudents)
                 {
                     @attendingStudent.FullName
                     <br />
                 }
-                @Html.ActionLink("Ny elev", "Register", "Account", new { id = Model.Id }, null)
             </div>
         </div>
     </div>
