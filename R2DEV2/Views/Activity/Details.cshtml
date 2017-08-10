@@ -4,13 +4,19 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Aktivitetsinformation</h2>
+
 
 <div>
+    <h4>ActivityClass</h4>
+
+    @Html.ActionLink("Redigera", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
+    <span>|</span>
+    @Html.ActionLink("Ta Bort", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+
     <hr />
     <dl class="dl-horizontal">
 
-       
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Module.Name)
         </dt>
@@ -28,14 +34,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
 
@@ -50,9 +48,34 @@
         <dd>
             @Html.DisplayFor(model => model.EndTime)
         </dd>
-
     </dl>
-</div>
+                <hr/>
+                </div>
+
+<dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+</br>
+<input  type="file" onchange="readFiles(event)" multiple ><small><i>Klicka på kappen och välj en fil</i></small>
+
+<script>
+    function readFiles(event) {
+        var fileList = event.files;
+        for (var i = 0; i < fileList.length; i++) {
+            var file = fileList[i]
+            console.log("i:" + i + "-" + file.name);
+        }
+    }
+
+</script>
+
+
+                
 
 
 

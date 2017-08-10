@@ -19,6 +19,8 @@ namespace R2DEV2.Controllers
 
         public object UserUtils { get; private set; }
 
+
+
         // GET: Course
         [Authorize]
         public ActionResult Index()
