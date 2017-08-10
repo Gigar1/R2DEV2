@@ -5,16 +5,14 @@
 }
 
 
-
 <div>
-    <h4>ActivityClass</h4>
+    <h3>Aktivitet</h3>
 
-    @Html.ActionLink("Redigera", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
+    @*@Html.ActionLink("Redigera", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
     <span>|</span>
-    @Html.ActionLink("Ta Bort", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+    @Html.ActionLink("Ta Bort", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>*@
 
     <hr />
-    <dl class="dl-horizontal">
 
     <dl class="dl-horizontal">
         <dt>
@@ -60,8 +58,9 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-</br>
-<input  type="file" onchange="readFiles(event)" multiple ><small><i>Klicka på kappen och välj en fil</i></small>
+<br />
+<h4>Inlämningar</h4>
+<input  type="file" onchange="readFiles(event)" multiple ><small><i>Klicka på knappen och välj en fil</i></small>
 
 <script>
     function readFiles(event) {
@@ -74,13 +73,7 @@
 
 </script>
 
-
-                
-
-
-
-
-
+<br />
 <p>
 
     <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Course", new { id = Model.Module.CourseClassId }, null)
