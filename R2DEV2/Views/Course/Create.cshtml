@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Skapa kurs</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>CourseClass</h4>
+        <h3>Skapa kurs</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -49,7 +48,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Skapa" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -59,5 +58,5 @@
 }
 
 <div>
-    <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index"), "Index")
+    <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index")
 </div>

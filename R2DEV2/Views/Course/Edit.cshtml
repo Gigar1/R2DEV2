@@ -1,15 +1,14 @@
 ﻿@model R2DEV2.Models.Classes.CourseClass
 
 @{
-    ViewBag.Title = "Redigera kurs";
+    ViewBag.Title = "Edit";
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-
-
+    <h3>Redigera @Html.DisplayFor(model => model.Name)</h3>
 
     <div class="form-horizontal">
         <fieldset>
