@@ -11,7 +11,8 @@
     }
 
     hr {
-        margin-bottom: 0px;
+        margin-top: 3px;
+        margin-bottom: 3px;
     }
 
     .panel-title {
@@ -61,6 +62,8 @@
 
                     <div id="@modules.Id" class="panel-collapse collapse in">
                         <div class="panel-body">
+                            @modules.Description
+                            <hr class="container-fluid" />
                             @foreach(var activities in modules.Activities )
                             {
                                 @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null)
@@ -77,23 +80,15 @@
 
                 @if (User.IsInRole("Teacher"))
                 {
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                        <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i> Skapa ny modul
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="NyModul" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <p>
-                                        @Html.ActionLink("Ny modul", "Create", "Module", new { id = Model.Id },null)
-
-
-                                    </p>
-                                </div>
-                            </div>
-                        }
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i>
+                                @Html.ActionLink("Skapa ny modul", "Create", "Module", new { id = Model.Id }, null)
+                            </a>
+                        </h4>
+                    </div>
+                }
             </div>
         </div>
     </div>
