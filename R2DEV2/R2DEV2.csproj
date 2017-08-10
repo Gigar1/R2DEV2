@@ -200,9 +200,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708091453121_wut.cs" />
-    <Compile Include="Migrations\201708091453121_wut.Designer.cs">
-      <DependentUpon>201708091453121_wut.cs</DependentUpon>
+    <Compile Include="Migrations\201708100826529_init1.cs" />
+    <Compile Include="Migrations\201708100826529_init1.Designer.cs">
+      <DependentUpon>201708100826529_init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708100828346_init11.cs" />
+    <Compile Include="Migrations\201708100828346_init11.Designer.cs">
+      <DependentUpon>201708100828346_init11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708100838535_init2.cs" />
+    <Compile Include="Migrations\201708100838535_init2.Designer.cs">
+      <DependentUpon>201708100838535_init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
@@ -303,8 +311,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708091453121_wut.resx">
-      <DependentUpon>201708091453121_wut.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708100826529_init1.resx">
+      <DependentUpon>201708100826529_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100828346_init11.resx">
+      <DependentUpon>201708100828346_init11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100838535_init2.resx">
+      <DependentUpon>201708100838535_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
