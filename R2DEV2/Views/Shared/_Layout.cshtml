@@ -89,27 +89,19 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#NyLärare"  data-toggle="tab">Lärare</a></li>
+                            <li>@*<a href="#NyLärare"  data-toggle="tab">Lärare</a>*@ @Html.ActionLink("Lärare", "RegisterTeacher", "Account")</li>
                             <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
                         </ul>
                     </li>
-
-            
-
-                    <li class="active" href="" data-toggle="tab" aria-expanded="true"><a>Sök</a></li>
+                    <li class="disabled"><a>Sök</a></li>
                 </ul>
             </div>
         }
     </div>
 
-    
-
-    
     <div class="container" id="content">
         @RenderBody()
     </div>
-
-   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

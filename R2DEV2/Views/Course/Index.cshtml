@@ -37,7 +37,14 @@
 
     <div class="tab-pane fade" id="NyKurs">
         <div class="container-fluid">
-            Skapa ny kurs
+            @if (User.IsInRole("Teacher"))
+            {
+                <div class="col-md-12">
+                    <p>
+                        @Html.ActionLink("Skapa ny kurs", "Create")
+                    </p>
+                </div>
+            }
         </div>
         <hr class="container-fluid" />
     </div>
@@ -83,19 +90,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <hr class="container-fluid" />
-}
-
-
-@if (User.IsInRole("Teacher"))
-{
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <p>
-                @Html.ActionLink("Skapa ny", "Create")
-            </p>
-        </div>
-    </div>
 }

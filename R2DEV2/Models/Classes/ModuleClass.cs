@@ -25,7 +25,7 @@ namespace R2DEV2.Models.Classes
         [Display(Name = "Slutdatum")]
         [DataType(DataType.Date)]
         public DateTime EndTime { get; set; }
-        public int CourseClassId { get; set; }
+        public int? CourseClassId { get; set; }
 
         public virtual ICollection<ActivityClass> Activities { get; set; }
         public virtual CourseClass Course { get; set; }
