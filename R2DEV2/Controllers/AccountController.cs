@@ -141,7 +141,7 @@ namespace R2DEV2.Controllers
         #endregion
 
 
-        #region GET: Account Register
+        #region GET: Account RegisterStudent
         [Authorize(Roles = "Teacher")]
         //[AllowAnonymous]
         public ActionResult Register(int id)
@@ -151,7 +151,7 @@ namespace R2DEV2.Controllers
         }
         #endregion
 
-        #region POST: Account Register
+        #region POST: Account RegisterStudent
         [HttpPost]
         [Authorize(Roles = "Teacher")]
         //[AllowAnonymous]
@@ -195,12 +195,17 @@ namespace R2DEV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = 0};
-                var result = await UserManager.CreateAsync(user, "Password1!");
+                var teacher = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = 0};
+                var result = await UserManager.CreateAsync(teacher, "Password1!");
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception(string.Join("\n", result.Errors));
+                }
 
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "Teacher");
+                    await UserManager.AddToRoleAsync(teacher.Id, "Teacher");
 
                     return RedirectToAction("Index", "Course");
                 }

@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201708100838535_init2.Designer.cs">
       <DependentUpon>201708100838535_init2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708100953019_testeeeee.cs" />
+    <Compile Include="Migrations\201708100953019_testeeeee.Designer.cs">
+      <DependentUpon>201708100953019_testeeeee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
     <Compile Include="Models\Classes\CourseClass.cs" />
@@ -303,6 +307,7 @@
     <Content Include="Views\Activity\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Account\RegisterTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708100838535_init2.resx">
       <DependentUpon>201708100838535_init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100953019_testeeeee.resx">
+      <DependentUpon>201708100953019_testeeeee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
