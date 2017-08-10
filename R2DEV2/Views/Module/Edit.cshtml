@@ -57,14 +57,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Spara" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index"), "Details", "Course", new { id = Model.CourseClassId })
+    <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink( " Tillbaka", "Details", "Course", new { id = Model.CourseClassId })
 </div>
 
 @section Scripts {
