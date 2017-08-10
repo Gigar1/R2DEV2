@@ -54,8 +54,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Course", new { id = Model.Module.CourseClassId }, null)
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Activity", new { id = Model.Id }, null) <span>|</span>
+            <input type="submit" value="Ta bort" class="btn btn-default" />
             @*@Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })*@
         </div>
     }
