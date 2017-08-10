@@ -3,12 +3,11 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Lägg till en ny student</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Lägg till en ny student</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
@@ -53,7 +52,7 @@
     </div>
 
     <div>
-        @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })
+        <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", null, null, null, new { href = Request.UrlReferrer })
     </div>
 }
 

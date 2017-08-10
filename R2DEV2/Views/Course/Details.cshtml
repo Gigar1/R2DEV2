@@ -75,7 +75,7 @@
                                     <small>
                                         @Html.ActionLink("Redigera", "Edit", "Module", new { id = modules.Id }, null) <i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
                                         &nbsp;
-                                        @Html.ActionLink("Ta Bort", "Delete", "Module", new { id = modules.Id }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+                                        @Html.ActionLink("Ta bort", "Delete", "Module", new { id = modules.Id, @onclick = "return confirm('Är du säker att du vill ta bort kursen?');" }, null) <i class="glyphicon glyphicon-remove" style="color:darkred"></i>
                                     </small>
                                 </h4>
                             }
@@ -91,7 +91,7 @@
                             {
                                 <h4 class="panel-title" style="display: inline; float: right;">
                                     <small>
-                                        @Html.ActionLink("Ny Aktivitet", "Create", "Activity", new { id = modules.Id }, null)
+                                        @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
                                         <i class="glyphicon glyphicon-plus" style="color:forestgreen"></i>
                                     </small>
                                 </h4>
@@ -147,9 +147,9 @@
     <div class="col-md-9">
         @if (User.IsInRole("Teacher"))
         {
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index")
             @Html.ActionLink("Ändra", "Edit", new { id = Model.Id }) <span>|</span>
-            @Html.ActionLink("Ta bort", "Delete", new { id = Model.Id }) <span>|</span>
-            @Html.ActionLink("Tillbaka", "Index")
+            @Html.ActionLink("Ta bort", "Delete", new { id = Model.Id }, new { @onclick = "return confirm('Är du säker att du vill ta bort kursen?');"}) <span>|</span>
         }
     </div>
 </div>
