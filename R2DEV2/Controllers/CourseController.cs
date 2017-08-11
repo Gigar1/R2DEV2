@@ -139,6 +139,23 @@ namespace R2DEV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CourseClass courseClass = db.CourseClasses.Find(id);
+            ApplicationUser user;
+            while ((user = courseClass.AttendingStudents.FirstOrDefault()) != null)
+            {
+                db.Users.Remove(user);
+            }
+            db.SaveChanges();
+            ModuleClass module;
+            while ((module = courseClass.Modules.FirstOrDefault()) != null)
+            {
+                db.ModuleClasses.Remove(module);
+            }
+            db.SaveChanges();
+            //foreach (var moduleClassId in courseClass.Modules)
+            //{
+            //   db.ModuleClasses.Remove(moduleClassId); 
+            //}
+
             db.CourseClasses.Remove(courseClass);
             db.SaveChanges();
             return RedirectToAction("Index");
