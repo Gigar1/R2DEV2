@@ -122,9 +122,9 @@ namespace R2DEV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ActivityClass activityClass = db.ActivityClasses.Find(id);
+            var courseId = db.ModuleClasses.Find(activityClass.ModuleClassId).CourseClassId;
             db.ActivityClasses.Remove(activityClass);
             db.SaveChanges();
-            var courseId = db.ModuleClasses.Find(activityClass.ModuleClassId).CourseClassId;
             //var courseid = x.CourseClassId;
             return RedirectToAction("Details", "Course", new { id = courseId });
         }
