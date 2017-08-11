@@ -4,11 +4,8 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Ta bort modul</h2>
-
-<h3>Är du säker att du vill ta bort denna modul?</h3>
+<h3>Är du säker att du vill ta bort modulen @Html.DisplayFor(model => model.Name)?</h3>
 <div>
-    <h4>ModuleClass</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,8 +54,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Course", "Index", new { id = Model.Id })<span>|</span>
+            <input type="submit" value="Ta bort" class="btn btn-default" />
         </div>
     }
 </div>

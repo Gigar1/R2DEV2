@@ -200,9 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708091453121_wut.cs" />
-    <Compile Include="Migrations\201708091453121_wut.Designer.cs">
-      <DependentUpon>201708091453121_wut.cs</DependentUpon>
+    <Compile Include="Migrations\201708110723274_gr.cs" />
+    <Compile Include="Migrations\201708110723274_gr.Designer.cs">
+      <DependentUpon>201708110723274_gr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
@@ -295,6 +295,7 @@
     <Content Include="Views\Activity\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Account\RegisterTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,8 +304,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708091453121_wut.resx">
-      <DependentUpon>201708091453121_wut.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708110723274_gr.resx">
+      <DependentUpon>201708110723274_gr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

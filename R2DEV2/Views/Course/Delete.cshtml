@@ -4,8 +4,8 @@
     ViewBag.Title = "Delete";
 }
 
-<h3>Är du säker på att du vill ta bort <small>'@Html.DisplayFor(model => model.Name)'</small>?</h3>
-@*//TEST*@
+<h3>Är du säker på att du vill ta bort @Html.DisplayFor(model => model.Name)?</h3>
+
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -47,8 +47,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Ta Bort" class="btn btn-default" /> |
-            @Html.ActionLink("Tillbaka", "Details", new { id = Model.Id })
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index"), "Details", new { id = Model.Id })<span>|</span>
+            <input type="submit" value="Ta Bort" class="btn btn-default" />
         </div>
     }
 </div>
