@@ -200,9 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708110723274_gr.cs" />
-    <Compile Include="Migrations\201708110723274_gr.Designer.cs">
-      <DependentUpon>201708110723274_gr.cs</DependentUpon>
+    <Compile Include="Migrations\201708110816436_23.cs" />
+    <Compile Include="Migrations\201708110816436_23.Designer.cs">
+      <DependentUpon>201708110816436_23.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201708110904077_blub.cs" />
     <Compile Include="Migrations\201708110904077_blub.Designer.cs">
@@ -308,8 +308,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708110723274_gr.resx">
-      <DependentUpon>201708110723274_gr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708110816436_23.resx">
+      <DependentUpon>201708110816436_23.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708110904077_blub.resx">
       <DependentUpon>201708110904077_blub.cs</DependentUpon>
