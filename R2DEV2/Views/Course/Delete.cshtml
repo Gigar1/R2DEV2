@@ -47,7 +47,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index"), "Details", new { id = Model.Id })<span>|</span>
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index", "Details", new { id = Model.Id })<span>|</span>
             <input type="submit" value="Ta Bort" class="btn btn-default" />
         </div>
     }
