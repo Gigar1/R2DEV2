@@ -45,10 +45,6 @@
         }
 </style>
 
-
-@*@Html.ActionLink( " ", "Delete", "Grocery", new { GroceryUsageID = item.GroceryUsageID, GroceryId = item.GroceryID }, new { @onclick = "return confirm('Are you sure you want to delete this Grocery');",  @class = "glyphicon glyphicon-trash" })*@
-
-
 <div class="container-fluid">
     <div class="col-md-9">
         <h2 style="display: inline-block;">
@@ -70,7 +66,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title" style="display:inline">
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @modules.Id<span>. </span>
+                                @*@modules.Id<span>. </span>*@
                                 @modules.Name
                             </a>
                         </h4>
