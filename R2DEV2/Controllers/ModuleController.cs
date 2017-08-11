@@ -121,9 +121,11 @@ namespace WebApplication23.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ModuleClass moduleClass = db.ModuleClasses.Find(id);
+            var courseId = db.ModuleClasses.Find(moduleClass.Id).CourseClassId;
             db.ModuleClasses.Remove(moduleClass);
             db.SaveChanges();
-            return RedirectToAction("Details", "Course", new { id = moduleClass.CourseClassId });
+            //return RedirectToAction("Details", "Course", new { id = moduleClass.CourseClassId });
+            return RedirectToAction("Details", "Course", new { id = courseId});
         }
 
         protected override void Dispose(bool disposing)

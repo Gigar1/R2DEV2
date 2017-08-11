@@ -30,6 +30,10 @@
         color: forestgreen;
     }
 
+    .panel {
+        min-height: 12em;
+    }
+
     .panel-title {
         font-weight: bolder;
         font-size: 16px;
@@ -79,20 +83,45 @@
                 </small>
             </h2>
         </div>
-        
-        <div class="col-sm-9 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Information
-                    </h4>
-                </div>
-                <div class="panel-body">
-                    @Html.DisplayFor(modelItem => item.Description)
+
+        <div class="rowequal">
+            <div class="col-sm-9 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Information
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </div>
                 </div>
             </div>
+            <div class="col-sm-3 hidden-xs" id="deltagarlista">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" style="display:inline">
+                            Deltagare:
+                        </h4>
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <h4 class="panel-title" style="display: inline; float: right;">
+                                <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("Register", "Account", new { id = item.Id })"></a>
+                            </h4>
+                        }
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var attendingStudent in item.AttendingStudents)
+                        {
+                            @attendingStudent.FullName
+                            <br />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <br />
+        <div class="col-sm-12">
             @Html.ActionLink("Läs mer", "Details", new { id = item.Id })
 
             @if (User.IsInRole("Teacher"))
@@ -100,29 +129,6 @@
                 <span>|</span> @Html.ActionLink("Ändra", "Edit", new { id = item.Id }) <span>|</span>
                 @Html.ActionLink("Ta bort", "Delete", new { id = item.Id })
             }
-        </div>
-
-        <div class="col-sm-3 hidden-xs" id="deltagarlista">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h4 class="panel-title" style="display:inline">
-                        Deltagare:
-                    </h4>
-                    @if (User.IsInRole("Teacher"))
-                    {
-                        <h4 class="panel-title" style="display: inline; float: right;">
-                            <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("Register", "Account", new { id = item.Id })"></a>
-                        </h4>
-                    }
-                </div>
-                <div class="panel-body">
-                    @foreach (var attendingStudent in item.AttendingStudents)
-                    {
-                        @attendingStudent.FullName
-                        <br />
-                    }
-                </div>
-            </div>
         </div>
     </div>
     <hr class="container-fluid" />
