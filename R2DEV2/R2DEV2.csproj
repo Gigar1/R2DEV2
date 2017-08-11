@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201708110723274_gr.Designer.cs">
       <DependentUpon>201708110723274_gr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708110904077_blub.cs" />
+    <Compile Include="Migrations\201708110904077_blub.Designer.cs">
+      <DependentUpon>201708110904077_blub.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classes\ActivityClass.cs" />
     <Compile Include="Models\Classes\CourseClass.cs" />
@@ -306,6 +310,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708110723274_gr.resx">
       <DependentUpon>201708110723274_gr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110904077_blub.resx">
+      <DependentUpon>201708110904077_blub.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

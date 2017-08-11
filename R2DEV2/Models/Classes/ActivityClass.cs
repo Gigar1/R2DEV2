@@ -15,10 +15,12 @@ namespace R2DEV2.Models.Classes
         [DisplayName("Aktivitetsinfo")]
         public string Description { get; set; }
         [DisplayName("Startdatum")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         [DisplayName("Slutdatum")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime EndTime { get; set; }
         public int ModuleClassId { get; set; }
         //public int CourseClassId { get; set; }
