@@ -152,8 +152,8 @@
         @if (User.IsInRole("Teacher"))
         {
             <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index")<span>|</span>
-            @Html.ActionLink("Ändra", "Edit", new { id = Model.Id })<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> <span>|</span>
-            @Html.ActionLink("Ta bort", "Delete", new { id = Model.Id }, new { @onclick = "return confirm('Är du säker att du vill ta bort kursen?');" })<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+            @Html.ActionLink("Ändra ", "Edit", new { id = Model.Id })<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> <span>|</span>
+            @Html.ActionLink("Ta bort ", "Delete", new { id = Model.Id }, new { @onclick = "return confirm('Är du säker att du vill ta bort kursen?');" })<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
         }
     </div>
 </div>
