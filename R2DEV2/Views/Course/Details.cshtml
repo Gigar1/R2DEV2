@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = "Course";
-}
-
+    int ModuleCounter = 1;
+}  
+    
 <style>
     h2, h4 {
         margin-top: 0px;
@@ -63,10 +64,12 @@
 
                 @foreach (var modules in Model.Modules)
                 {
+                    
+
                     <div class="panel-heading">
                         <h4 class="panel-title" style="display:inline">
                             <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @*@modules.Id<span>. </span>*@
+                                @(ModuleCounter++)<span>. </span>
                                 @modules.Name
                             </a>
                         </h4>
