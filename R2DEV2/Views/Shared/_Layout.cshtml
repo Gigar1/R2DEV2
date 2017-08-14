@@ -34,7 +34,7 @@
 
         #adminPanel {
             background-color: #e7e7e7;
-            margin-top: -5px;
+            margin-top: 15px;
             margin-bottom: 21px;
             min-height: 43px;
         }
@@ -58,6 +58,65 @@
         .panel {
             margin-bottom: 0px;
         }
+
+        h5 {
+            font-weight: bold;
+            margin-top: 0px;
+            margin-bottom: 4px;
+        }
+
+        hr {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .panel-title {
+            font-weight: bolder;
+            font-size: 16px;
+        }
+
+        #btnAddStudent, btnEditCourse, btnDeleteCourse {
+            font-size: 18px;
+        }
+
+            #btnAddStudent:hover {
+                text-decoration: none;
+                color: forestgreen;
+            }
+
+        .panel-group .panel-heading {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .panel-group .panel-heading + .panel-collapse > .panel-body,
+            .panel-group .panel-heading + .panel-collapse > .list-group {
+                border-bottom: 1px solid #dddddd;
+            }
+
+        h2, h3, h4 {
+            margin-top: 0px;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+            h2 > a {
+                color: black;
+            }
+
+                h2 > a:hover {
+                    color: black;
+                    font-weight: bolder;
+                    text-decoration: none;
+                }
+
+        .panel {
+            min-height: 12em;
+        }
+
+        .panel-title {
+            font-weight: bolder;
+            font-size: 16px;
+        }
     </style>
 
     <div class="navbar-default navbar-fixed-top">
@@ -68,46 +127,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("LEXICON", "Index", "Course", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("LEXICON", "Index", "Course", new { area = "" }, new { @class = "navbar-brand", style="margin-top: 10px; margin-bottom: 10px;" })
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-
-    <div id="adminPanel" class="container-fluid">
-        @if (User.IsInRole("Teacher"))
-        {
-            <div class="container">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Hem</a></li>
-                    <li><a href="#NyKurs" data-toggle="tab">Ny Kurs</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Lägg till<span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li>@*<a href="#NyLärare"  data-toggle="tab">Lärare</a>*@ @Html.ActionLink("Lärare", "RegisterTeacher", "Account")</li>
-                            <li><a href="#NyElev" data-toggle="tab">Elev</a></li>
-                        </ul>
-                    </li>
-                    <li class="disabled"><a>Sök</a></li>
-                </ul>
-            </div>
-        }
-    </div>
-
-    <div class="container" id="content">
-        @RenderBody()
-    </div>
+    
+    @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
     <footer>
+        <br />
         <div class="container">
             <p>&copy; @DateTime.Now.Year - R2DEV2</p>
         </div>

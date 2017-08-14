@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace R2DEV2.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -33,29 +34,52 @@ namespace R2DEV2.Controllers
             
             else
             {
-                var userId = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().CourseClassId;
-                return RedirectToAction("Details", "Course", new { id = userId });
+                var currentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().CourseClassId;
+                return RedirectToAction("Details", "Course", new { id = currentUser });
             }
         }
-        //[Authorize]
-        //public ActionResult Kalender()
-        //{
-        //    return View();
-        //}
 
         // GET: Course/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var currentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().CourseClassId;
+            if (id == currentUser && User.IsInRole("Student"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                CourseClass courseClass = db.CourseClasses.Find(id);
+                if (courseClass == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(courseClass);
             }
-            CourseClass courseClass = db.CourseClasses.Find(id);
-            if (courseClass == null)
+
+            else if (User.IsInRole("Teacher"))
             {
-                return HttpNotFound();
+                if (id == 1)
+                {
+                    return RedirectToAction("Index", "Course");
+                }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                CourseClass courseClass = db.CourseClasses.Find(id);
+                if (courseClass == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(courseClass);
             }
-            return View(courseClass);
+
+            else
+            {
+                return RedirectToAction("Details", "Course", new { id = currentUser });
+            }
         }
 
         // GET: Course/Create
@@ -139,6 +163,19 @@ namespace R2DEV2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CourseClass courseClass = db.CourseClasses.Find(id);
+            ApplicationUser user;
+            while ((user = courseClass.AttendingStudents.FirstOrDefault()) != null)
+            {
+                db.Users.Remove(user);
+            }
+            db.SaveChanges();
+            ModuleClass module;
+            while ((module = courseClass.Modules.FirstOrDefault()) != null)
+            {
+                db.ModuleClasses.Remove(module);
+            }
+            db.SaveChanges();
+
             db.CourseClasses.Remove(courseClass);
             db.SaveChanges();
             return RedirectToAction("Index");

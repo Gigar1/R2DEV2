@@ -4,59 +4,68 @@
     ViewBag.Title = "Details";
 }
 
+<div id="adminPanel" class="container-fluid">
+    @if (User.IsInRole("Teacher"))
+    {
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Hem", "Index", "Course")</li>
+                <li>@Html.ActionLink("Ny Kurs", "Create", "Course")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Lägg till<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Ny Lärare", "RegisterTeacher", "Account")</li>
+                    </ul>
+                </li>
+                <li class="disabled"><a>Sök</a></li>
+            </ul>
+        </div>
+    }
+</div>
 
-<div>
-    <h3>@Html.DisplayFor(model => model.Name)</h3>
-
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Module.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Module.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-    </dl>
-                <hr/>
-                </div>
-
-<dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-<br />
-<h4>Inlämningar</h4>
-<input  type="file" onchange="readFiles(event)" multiple ><small><i>Klicka på knappen och välj en fil</i></small>
-
-<script>
+<div class="container" id="content">
+    <div>
+        <h3>@Html.DisplayFor(model => model.Name)</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Module.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Module.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+        </dl>
+        <hr />
+    </div>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <br />
+    <h4>Inlämningar</h4>
+    <input type="file" onchange="readFiles(event)" multiple><small><i>Klicka på knappen och välj en fil</i></small>
+    <script>
     function readFiles(event) {
         var fileList = event.files;
         for (var i = 0; i < fileList.length; i++) {
@@ -65,17 +74,16 @@
         }
     }
 
-</script>
-
-<br />
-<p>
-
-    <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Course", new { id = Model.Module.CourseClassId }, null)
-    <span>|</span>
-    @Html.ActionLink("Ändra ", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
-    <span>|</span>
-    @Html.ActionLink("Ta Bort ", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
-    
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })*@
-    @*@Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })*@
-</p>
+    </script>
+    <br />
+    <p>
+        <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", null, null, null, new { href = Request.UrlReferrer })
+        @if (User.IsInRole("Teacher"))
+        {
+            <span>|</span>
+            @Html.ActionLink("Ändra ", "Edit", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i>
+            <span>|</span>
+            @Html.ActionLink("Ta Bort ", "Delete", "Activity", new { id = Model.Id }, null)<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
+        }
+    </p>
+</div>

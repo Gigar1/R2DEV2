@@ -56,7 +56,6 @@ namespace R2DEV2.Controllers
             }
         }
 
-
         #region GET: Account Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -195,8 +194,8 @@ namespace R2DEV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var teacher = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = 0};
-                var result = await UserManager.CreateAsync(teacher, "Password1!");
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, TimeOfRegistration = DateTime.Now, CourseClassId = 1 };
+                var result = await UserManager.CreateAsync(user, "Password1!");
 
                 if (!result.Succeeded)
                 {
@@ -205,7 +204,7 @@ namespace R2DEV2.Controllers
 
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(teacher.Id, "Teacher");
+                    await UserManager.AddToRoleAsync(user.Id, "Teacher");
 
                     return RedirectToAction("Index", "Course");
                 }

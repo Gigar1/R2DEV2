@@ -41,6 +41,14 @@ namespace R2DEV2.Migrations
 
             CourseClass[] course = new CourseClass[]
             {
+                new CourseClass // Endast för Lärare
+                {
+                    Name = "Lärare",
+                    Description = "Lärare i R2DEV2:s databas.",
+                    StartTime = new DateTime(1900, 01, 01),
+                    EndTime = new DateTime(2900, 01, 01),
+                },
+
                 new CourseClass
                 {
                     Name = ".NET Höst",
@@ -84,7 +92,7 @@ namespace R2DEV2.Migrations
                     Description = "Beef deserunt anim aute frankfurter lorem doner andouille ham hock laboris meatloaf eu cupim. Minim lorem ball tip porchetta tempor, shoulder ea salami esse turducken nostrud nisi non labore. Landjaeger jerky in ipsum. Velit capicola pancetta spare ribs dolore.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[0].Id,
+                    CourseClassId = course[1].Id,
                 },
 
                 new ModuleClass
@@ -93,7 +101,7 @@ namespace R2DEV2.Migrations
                     Description = "Biltong enim cupidatat labore, turducken tri-tip eu duis shank ipsum t-bone excepteur non quis kevin. Occaecat adipisicing eu qui pancetta burgdoggen consectetur pastrami. Excepteur culpa pork ea frankfurter, t-bone capicola aliqua eiusmod et spare ribs shankle. Tempor sunt jerky, do meatball kevin strip steak doner sausage proident pastrami pork belly. Ex burgdoggen andouille labore, velit ut short ribs sed ham landjaeger cupim biltong cillum. Eu labore sint salami, turkey dolore fatback pariatur proident mollit minim pancetta fugiat chicken sunt. Sirloin salami filet mignon ground round pancetta pig. Beef ribs brisket tri-tip short loin sirloin burgdoggen boudin swine biltong. Brisket beef ribs turducken kielbasa ground round prosciutto cupim rump. Burgdoggen doner shank, t-bone venison jerky rump.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[0].Id,
+                    CourseClassId = course[1].Id,
                 },
 
                 new ModuleClass
@@ -102,7 +110,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig pynta din sida med lite basic bootstrap och css.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[1].Id,
+                    CourseClassId = course[2].Id,
                 },
 
                 new ModuleClass
@@ -111,7 +119,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig grunderna för C# programmering.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[1].Id,
+                    CourseClassId = course[2].Id,
                 },
 
                 new ModuleClass
@@ -120,7 +128,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig grunderna för utveckling med JavaScript.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId =  course[1].Id,
+                    CourseClassId =  course[2].Id,
                 },
 
                 new ModuleClass
@@ -129,7 +137,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig PHP.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[1].Id,
+                    CourseClassId = course[2].Id,
                 },
 
                 new ModuleClass
@@ -138,7 +146,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig grunderna för Python utveckling.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[1].Id,
+                    CourseClassId = course[2].Id,
                 },
 
                 new ModuleClass
@@ -147,7 +155,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig handla kläder, elektronik och annat kul ONLINE!",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[2].Id,
+                    CourseClassId = course[3].Id,
                 },
 
                 new ModuleClass
@@ -156,7 +164,7 @@ namespace R2DEV2.Migrations
                     Description = "Lär dig gå och strosa runt på stan som en kung.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[2].Id,
+                    CourseClassId = course[3].Id,
                 },
 
                 new ModuleClass
@@ -165,7 +173,7 @@ namespace R2DEV2.Migrations
                     Description = "Spicy jalapeno bacon ipsum dolor amet salami capicola bresaola leberkas pastrami. Landjaeger jowl tail andouille, short loin kevin sirloin swine kielbasa picanha. Sausage spare ribs boudin picanha ham hock pastrami porchetta doner chicken venison. Frankfurter swine porchetta shankle beef ribs.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[3].Id,
+                    CourseClassId = course[4].Id,
                 },
 
                 new ModuleClass
@@ -174,7 +182,7 @@ namespace R2DEV2.Migrations
                     Description = "Meatball andouille ground round bresaola shankle swine. Picanha ham hock meatloaf jowl flank chuck. Prosciutto turkey drumstick alcatra shank pork belly. Ham hock doner short loin, ball tip beef hamburger drumstick tenderloin bresaola beef ribs tri-tip flank fatback cow. Cupim venison prosciutto kevin. Porchetta cow strip steak pancetta. Kevin strip steak bacon, sirloin pig short ribs frankfurter hamburger.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[3].Id,
+                    CourseClassId = course[4].Id,
                 },
 
                 new ModuleClass
@@ -183,7 +191,7 @@ namespace R2DEV2.Migrations
                     Description = "Sirloin salami filet mignon ground round pancetta pig. Beef ribs brisket tri-tip short loin sirloin burgdoggen boudin swine biltong. Brisket beef ribs turducken kielbasa ground round prosciutto cupim rump. Burgdoggen doner shank, t-bone venison jerky rump.",
                     StartTime = new DateTime(2015, 10, 14),
                     EndTime = new DateTime(2015, 11, 14),
-                    CourseClassId = course[3].Id,
+                    CourseClassId = course[4].Id,
                 },
             };
             context.ModuleClasses.AddOrUpdate(m => m.Name, module);
@@ -619,9 +627,9 @@ namespace R2DEV2.Migrations
 
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(userStore);
-            string[] emails = new[] { "john@lexicon.se", "teacher@lexicon.se", "elev@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "victor@lexicon.se", "mats@lexicon.se", "anton@lexicon.se", "andres@lexicon.se", "henrik@lexicon.se", "thomas@lexicon.se", "zlatan@lexicon.se", "neymar@lexicon.se", "steven@lexicon.se", "messi@lexicon", "ronaldo@lexicon.se" };
-            string[] firstName = new[] { "John", "Teacher", "Elev", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Victor", "Mats", "Anton", "Andres", "Henrik", "Thomas", "Zlatan", "Neymar", "Steven", "Leo", "Cristiano" };
-            string[] lastName = new[] { "Hellman", "Lexicon", "Elevsson", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Berglund", "Danhard", "Olsson", "Pontio", "Forslin", "Myrsten", "Ibrahimovic", "Jr", "Gerrard", "Messi", "Ronaldo" };
+            string[] emails = new[] { "teacher@lexicon.se", "john@lexicon.se", "dimitris@lexicon.se", "bob@lexicon.se", "hans@lexicon.se", "olle@lexicon.se", "marcus@lexicon.se", "johan@lexicon.se", "gigar@lexicon.se", "victor@lexicon.se", "mats@lexicon.se", "anton@lexicon.se", "andres@lexicon.se", "henrik@lexicon.se", "thomas@lexicon.se", "zlatan@lexicon.se", "neymar@lexicon.se", "steven@lexicon.se", "messi@lexicon", "ronaldo@lexicon.se" };
+            string[] firstName = new[] { "Teacher", "John", "Dimitris", "Bob", "Hans", "Olle", "Marcus", "Johan", "Gigar", "Victor", "Mats", "Anton", "Andres", "Henrik", "Thomas", "Zlatan", "Neymar", "Steven", "Leo", "Cristiano" };
+            string[] lastName = new[] { "Lexicon", "Hellman", "Björlingh", "Bobsson", "Andersen", "Oren", "Broman", "Bengter", "Khalil", "Berglund", "Danhard", "Olsson", "Pontio", "Forslin", "Myrsten", "Ibrahimovic", "Jr", "Gerrard", "Messi", "Ronaldo" };
 
             int i = 0;
             foreach (string email in emails)
@@ -629,26 +637,6 @@ namespace R2DEV2.Migrations
                 if (!context.Users.Any(u => u.UserName == email))
                 {
                     if (i < 3)
-                    {
-                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[2].Id };
-                        var result = userManager.Create(user, "password");
-                        if (!result.Succeeded)
-                        {
-                            throw new Exception(string.Join("\n", result.Errors));
-                        }
-                    }
-
-                    else if (i < 6)
-                    {
-                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[1].Id };
-                        var result = userManager.Create(user, "password");
-                        if (!result.Succeeded)
-                        {
-                            throw new Exception(string.Join("\n", result.Errors));
-                        }
-                    }
-
-                    else if (i < 15)
                     {
                         ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[0].Id };
                         var result = userManager.Create(user, "password");
@@ -658,9 +646,29 @@ namespace R2DEV2.Migrations
                         }
                     }
 
+                    else if (i < 6)
+                    {
+                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[2].Id };
+                        var result = userManager.Create(user, "password");
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(string.Join("\n", result.Errors));
+                        }
+                    }
+
+                    else if (i < 15)
+                    {
+                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[1].Id };
+                        var result = userManager.Create(user, "password");
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(string.Join("\n", result.Errors));
+                        }
+                    }
+
                     else
                     {
-                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[3].Id };
+                        ApplicationUser user = new ApplicationUser { UserName = email, Email = email, FirstName = firstName[i], LastName = lastName[i], TimeOfRegistration = DateTime.Now, CourseClassId = course[4].Id };
                         var result = userManager.Create(user, "password");
                         if (!result.Succeeded)
                         {
@@ -677,7 +685,10 @@ namespace R2DEV2.Migrations
             Teacher = userManager.FindByName("teacher@lexicon.se");
             userManager.AddToRole(Teacher.Id, "Teacher");
 
-            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "teacher@lexicon.se" && u.Email != "john@lexicon.se")))
+            Teacher = userManager.FindByName("dimitris@lexicon.se");
+            userManager.AddToRole(Teacher.Id, "Teacher");
+
+            foreach (ApplicationUser user in userManager.Users.ToList().Where(u => (u.Email != "teacher@lexicon.se" && u.Email != "john@lexicon.se" && u.Email != "dimitris@lexicon.se")))
             {
                 userManager.AddToRole(user.Id, "Student");
             }

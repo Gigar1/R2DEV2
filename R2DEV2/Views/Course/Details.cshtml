@@ -3,76 +3,71 @@
 @{
     ViewBag.Title = "Course";
     int ModuleCounter = 1;
-}  
-    
-<style>
-    h2, h4 {
-        margin-top: 0px;
-        margin-bottom: 10px;
+}
+
+<div id="adminPanel" class="container-fluid">
+    @if (User.IsInRole("Teacher"))
+    {
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Hem", "Index", "Course")</li>
+                <li>@Html.ActionLink("Ny Kurs", "Create", "Course")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Lägg till<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Ny Lärare", "RegisterTeacher", "Account")</li>
+                    </ul>
+                </li>
+                <li class="disabled"><a>Sök</a></li>
+            </ul>
+        </div>
     }
+</div>
 
-    h5 {
-        font-weight: bold;
-        margin-top:0px;
-        margin-bottom: 4px;
-    }
-
-    hr {
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
-
-    .panel-title {
-        font-weight: bolder;
-        font-size: 16px;
-    }
-
-    #btnAddStudent {
-        font-size: 18px;
-    }
-
-    #btnAddStudent:hover{
-        text-decoration: none;
-        color: forestgreen;
-    }
-
-    .panel-group .panel-heading {
-        border-bottom: 1px solid #dddddd;
-    }
-
-        .panel-group .panel-heading + .panel-collapse > .panel-body,
-        .panel-group .panel-heading + .panel-collapse > .list-group {
-            border-bottom: 1px solid #dddddd;
-        }
-</style>
-
-<div class="container-fluid">
-    <div class="col-md-9">
-        <h2 style="display: inline-block;">
-            @Html.DisplayFor(model => model.Name)
-        </h2>
-        <h2 class="hidden-xs" style="float:right; display: inline-block;">
-            <small style="text-align:right;">
-                @Html.DisplayFor(model => model.StartTime) till
-                @Html.DisplayFor(model => model.EndTime)
-            </small>
-        </h2>
-    </div>
-    <div class="col-md-9">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-
-                @foreach (var modules in Model.Modules)
-                {
-                    
-
-                    <div class="panel-heading">
-                        <h4 class="panel-title" style="display:inline">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
-                                @(ModuleCounter++)<span>. </span>
-                                @modules.Name
-                            </a>
+<div class="container" id="content">
+    <div class="container-fluid">
+        <div class="col-md-9">
+            <h2 style="display: inline-block;">
+                @Html.DisplayFor(model => model.Name)
+            </h2>
+            <h2 class="hidden-xs" style="float:right; display: inline-block;">
+                <small style="text-align:right;">
+                    @Html.DisplayFor(model => model.StartTime) till
+                    @Html.DisplayFor(model => model.EndTime)
+                </small>
+            </h2>
+        </div>
+        <div class="col-md-9">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color: #e7e7e7;">
+                        <h4 class="panel-title" style="display: inline-block;">
+                            Information
                         </h4>
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <h4 class="panel-title" style="float:right; display: inline-block;">                                
+                                <a id="btnEditCourse" class="glyphicon glyphicon-pencil" href="@Url.Action("Edit", "Course", new { id = Model.Id })"></a>
+                                &nbsp;
+                                <a id="btnDeleteCourse" class="glyphicon glyphicon-trash" href="@Url.Action("Delete", "Course", new { id = Model.Id })"></a>
+                            </h4>
+                        }
+                    </div>
+                    <div class="panel-body" style="border-bottom: 1px solid #dddddd;">
+                        @Model.Description
+                    </div>
+                    
+                    @foreach (var modules in Model.Modules)
+                    {
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="display:inline">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#@modules.Id">
+                                    @(ModuleCounter++)<span>. </span>
+                                    @modules.Name
+                                </a>
+                            </h4>
                             @if (User.IsInRole("Teacher"))
                             {
                                 <h4 class="panel-title" style="display: inline; float: right;">
@@ -83,78 +78,98 @@
                                     </small>
                                 </h4>
                             }
-                    </div>
-
-                    <div id="@modules.Id" class="panel-collapse collapse collapse">
-                        <div class="panel-body">
-                            <h5>Information: </h5>
-                            @modules.Description
-                            <hr class="container-fluid" />
-                            <h5 style="display: inline;">Aktiviteter: </h5>
-                            @if (User.IsInRole("Teacher"))
-                            {
-                                <h4 class="panel-title" style="display: inline; float: right;">
-                                    <small>
-                                        @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
-                                        <i class="glyphicon glyphicon-plus" style="color:forestgreen"></i>
-                                    </small>
-                                </h4>
-                            }
-                            <br />
-                            @foreach(var activities in modules.Activities )
-                            {
-                                @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null)
-                                <br />
-                            }
                         </div>
-                    </div>
-                }
-
-                @if (User.IsInRole("Teacher"))
-                {
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
-                                <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i>
-                                @Html.ActionLink("Skapa ny modul", "Create", "Module", new { id = Model.Id }, null)
-                            </a>
+                        
+                        <div id="@modules.Id" class="panel-collapse collapse collapse">
+                            <div class="panel-body">
+                                <h5>Information: </h5>
+                                @modules.Description
+                                <hr class="container-fluid" />
+                                <h5 style="display: inline;">Aktiviteter: </h5>
+                                @if (User.IsInRole("Teacher"))
+                                {
+                                    <h4 class="panel-title" style="display: inline; float: right;">
+                                        <small>
+                                            @Html.ActionLink("Ny aktivitet", "Create", "Activity", new { id = modules.Id }, null)
+                                            <i class="glyphicon glyphicon-plus" style="color:forestgreen"></i>
+                                        </small>
+                                    </h4>
+                                }
+                                <br />
+                                @foreach (var activities in modules.Activities)
+                                {
+                                    @Html.ActionLink(@activities.Name, "Details", "Activity", new { id = activities.Id }, null)
+                                    <br />
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#NyModul">
+                                    <i class="glyphicon glyphicon-plus-sign" style="color:forestgreen"></i>
+                                    @Html.ActionLink("Skapa ny modul", "Create", "Module", new { id = Model.Id }, null)
+                                </a>
+                            </h4>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="display:inline">
+                        Deltagare:
+                    </h4>
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        <h4 class="panel-title" style="display: inline; float: right;">
+                            <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("Register", "Account", new { id = Model.Id })"></a>
                         </h4>
-                    </div>
-                }
+                    }
+                </div>
+                <div class="panel-body">
+                    @foreach (var attendingStudent in Model.AttendingStudents)
+                    {
+                        if (User.Identity.Name == attendingStudent.Email)
+                        {
+                            <b>@attendingStudent.FullName</b>
+                        }
+                        else
+                        {
+                            @attendingStudent.FullName
+                        }
+                        <br />
+                    }
+                </div>
             </div>
+            @*<br />
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="display:inline">
+                        Lärare:
+                    </h4>
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        <h4 class="panel-title" style="display: inline; float: right;">
+                            <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("RegisterTeacher", "Account")"></a>
+                        </h4>
+                    }
+                </div>
+                <div class="panel-body">
+                    Lista på lärare
+                </div>
+            </div>*@
         </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h4 class="panel-title" style="display:inline">
-                    Deltagare:
-                </h4>
-                @if (User.IsInRole("Teacher"))
-                {
-                    <h4 class="panel-title" style="display: inline; float: right;">
-                        <a id="btnAddStudent" class="glyphicon glyphicon-plus-sign" href="@Url.Action("Register", "Account", new { id = Model.Id })" ></a>
-                     </h4>
-                }
-            </div>
-            <div class="panel-body">
-                @foreach (var attendingStudent in Model.AttendingStudents)
-                {
-                    @attendingStudent.FullName
-                    <br />
-                }
-            </div>
+        <div class="col-md-9">
+            @if (User.IsInRole("Teacher"))
+            {
+                <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index")
+            }
         </div>
-    </div>
-
-    <div class="col-md-9">
-        @if (User.IsInRole("Teacher"))
-        {
-            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Index")<span>|</span>
-            @Html.ActionLink("Ändra ", "Edit", new { id = Model.Id })<i class="glyphicon glyphicon-pencil" style="color:forestgreen"></i> <span>|</span>
-            @Html.ActionLink("Ta bort ", "Delete", new { id = Model.Id }, new { @onclick = "return confirm('Är du säker att du vill ta bort kursen?');" })<i class="glyphicon glyphicon-remove" style="color:darkred"></i>
-        }
     </div>
 </div>
-
+<br />
