@@ -4,59 +4,71 @@
     ViewBag.Title = "Delete";
 }
 
-<h3>Är du säker att du ta bort aktiviteten @Html.DisplayFor(model => model.Name)?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Module.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Module.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Activity", new { id = Model.Id }, null) <span>|</span>
-            <input type="submit" value="Ta bort" class="btn btn-default" />
-            @*@Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer })*@
+<div id="adminPanel" class="container-fluid">
+    @if (User.IsInRole("Teacher"))
+    {
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Hem", "Index", "Course")</li>
+                <li>@Html.ActionLink("Ny Kurs", "Create", "Course")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Lägg till<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Ny Lärare", "RegisterTeacher", "Account")</li>
+                    </ul>
+                </li>
+                <li class="disabled"><a>Sök</a></li>
+            </ul>
         </div>
     }
+</div>
+
+<div class="container" id="content">
+    <h3>Är du säker att du ta bort aktiviteten @Html.DisplayFor(model => model.Name)?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Module.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Module.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", "Details", "Activity", new { id = Model.Id }, null) <span>|</span>
+                <input type="submit" value="Ta bort" class="btn btn-default" />
+            </div>
+        }
+    </div>
 </div>

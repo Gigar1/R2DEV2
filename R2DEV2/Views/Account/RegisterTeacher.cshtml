@@ -3,59 +3,68 @@
     ViewBag.Title = "RegisterTeacher";
 }
 
-<h2>Lägg till en ny lärare</h2>
-
-@using (Html.BeginForm("RegisterTeacher", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "exempel@adress.se" })
+<div id="adminPanel" class="container-fluid">
+    @if (User.IsInRole("Teacher"))
+    {
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Hem", "Index", "Course")</li>
+                <li >@Html.ActionLink("Ny Kurs", "Create", "Course")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Lägg till<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="active">@Html.ActionLink("Ny Lärare", "RegisterTeacher", "Account")</li>
+                    </ul>
+                </li>
+                <li class="disabled"><a>Sök</a></li>
+            </ul>
         </div>
-    </div>
+    }
+</div>
 
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+<div class="container" id="content">
+    <h2>Lägg till en ny lärare</h2>
+    @using (Html.BeginForm("RegisterTeacher", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Lösenord" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "exempel@adress.se" })
             </div>
-        </div>*@
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Repetera lösenord" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Förnamn" })
             </div>
-        </div>*@
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Förnamn" })
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Efternamn" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Efternamn" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Registera" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Registera" />
+            </div>
         </div>
-    </div>
 
-    <div>
-        <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", null, null, null, new { href = Request.UrlReferrer })
-    </div>
-}
+        <div>
+            <i class="glyphicon glyphicon-circle-arrow-left" style="color:cornflowerblue"></i>@Html.ActionLink(" Tillbaka", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+    }
+</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
